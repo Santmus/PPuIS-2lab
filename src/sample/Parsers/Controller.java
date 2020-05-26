@@ -14,6 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+    /*
+    Условия поиска и удаления:
+ -по названию товара или количеству на складе; +
+-названию производителя или УНП производителя
+-по адресу склада;
+*/
+
 public class Controller {
 
     private List<Product> mainTableData = new ArrayList<>();
@@ -57,6 +64,48 @@ public class Controller {
     public void saveTableData(File file, DOMparser parser) throws TransformerException, ParserConfigurationException {
         parser.parse(mainTableData, file);
     }
+
+    public void searchProductNameAndQuantityInStock(String productName, Integer quantity_in_stock) {
+        List<Product> searchResult = new ArrayList<>();
+
+        for (Product product : mainTableData) {
+            if (product.getProductName().contains(productName) && product.getQuantity_in_stock().toString().equals(quantity_in_stock)) {
+                searchResult.add(product);
+            }
+        }
+        searchTableData = searchResult;
+    }
+
+    public void searchManufacturerNameAndUnpManufacturer(String manufacturerName,Integer unp_manufacturer){
+        List<Product> searchResult = new ArrayList<>();
+
+        for (Product product : mainTableData) {
+            if (product.getManufacturerName().contains(manufacturerName) && product.getUnp_manufacturer().toString().equals(unp_manufacturer)) {
+                searchResult.add(product);
+            }
+        }
+        searchTableData = searchResult;
+    }
+
+    public void searchWarehouseAddress(String warehouse_address){
+        List<Product> searchResult = new ArrayList<>();
+
+        for (Product product : mainTableData) {
+            if (product.getWarehouse_address().contains(warehouse_address)) {
+                searchResult.add(product);
+            }
+        }
+        searchTableData = searchResult;
+    }
+
+    public Page<Product> updateSearchWindowTable(int pageNumber, int recordsOnPageCount) {
+        return createPage(pageNumber, recordsOnPageCount, searchTableData);
+    }
+
+    /*public  void  deleteProductNameAndQuantityInStock(String productName, Integer quantityInStock) {
+
+    }*/
+
 
     public void insertTableData(File file, SAXParser parser) throws ParserConfigurationException, SAXException,
                                                                                                        IOException {
