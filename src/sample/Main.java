@@ -14,10 +14,8 @@ import javafx.stage.Stage;
 import org.xml.sax.SAXException;
 import sample.Parsers.Controller;
 import sample.Parsers.DOMparser;
-import sample.Parsers.SAXparser;
 import sample.Product.AddProductWindow;
 import sample.View.MainWindowTable;
-import sample.View.MenuEvent;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;

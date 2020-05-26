@@ -20,18 +20,22 @@ public class DOMparser {
     public void parse(List<Product> tableData, File file) throws ParserConfigurationException, TransformerException {
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-        Document document = docBuilder.newDocument();
-        Element docRootElement = document.createElement("tableData");
-
-        for (int index = 0; index < tableData.size(); index++) {
-            docRootElement.appendChild(addPlayerToDocument(index, tableData.get(index), document));
+        DocumentBuilder docBuilder ;
+        try {
+            docBuilder = docFactory.newDocumentBuilder();
+            Document document = docBuilder.newDocument();
+            Element docRootElement = document.createElement("tableData");
+            for (int index = 0; index < tableData.size(); index++) {
+                docRootElement.appendChild(addPlayerToDocument(index, tableData.get(index), document));
+            }
+            document.appendChild(docRootElement);
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(file);
+            saveDataInFile(source, result);
         }
-
-        document.appendChild(docRootElement);
-        DOMSource source = new DOMSource(document);
-        StreamResult result = new StreamResult(file);
-        saveDataInFile(source, result);
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private Element addPlayerToDocument(int index, Product product, Document document) {
