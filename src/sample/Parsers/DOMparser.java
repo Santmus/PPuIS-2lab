@@ -42,23 +42,24 @@ public class DOMparser {
 
         Element productName = document.createElement("productName");
         productName.appendChild(document.createTextNode(product.getProductName()));
-        document.appendChild(productItem);
+        productItem.appendChild(productName);
 
         Element manufacturerName = document.createElement("manufacturerName");
         manufacturerName.appendChild(document.createTextNode(product.getManufacturerName()));
-        document.appendChild(productItem);
+        productItem.appendChild(manufacturerName);
 
         Element unp_manufacturer = document.createElement("unp_manufacturer");
         unp_manufacturer.appendChild(document.createTextNode(product.getUnp_manufacturer().toString()));
-        document.appendChild(productItem);
+        productItem.appendChild(unp_manufacturer);
 
         Element quantity_in_stock = document.createElement("quantity_in_stock");
         quantity_in_stock.appendChild(document.createTextNode(product.getQuantity_in_stock().toString()));
-        document.appendChild(productItem);
+        productItem.appendChild(quantity_in_stock);
 
         Element warehouse_address = document.createElement("warehouse_address");
         warehouse_address.appendChild(document.createTextNode(product.getWarehouse_address()));
-        document.appendChild(productItem);
+        productItem.appendChild(warehouse_address);
+
         return productItem;
     }
 

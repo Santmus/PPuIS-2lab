@@ -60,7 +60,7 @@ public class SAXparser extends DefaultHandler {
     @Override
     public void endDocument() { System.out.println("Stop parse XML..."); }
 
-    public List<Product> getPatients() {
+    public List<Product> getProduct() {
         return product;
     }
 }

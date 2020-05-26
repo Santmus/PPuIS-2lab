@@ -26,14 +26,15 @@ public class MenuEvent {
     private javafx.scene.control.MenuBar menuBar;
     private javafx.scene.control.Menu editData,fileData;
     private javafx.scene.control.MenuItem openFile,saveFile,getLine,searchLine,deleteLine,exitProgram;
+
     private Pane aligner;
-
     private SAXParser saxParser;
-    private DOMparser domParser;
+    private DOMparser domParser = new DOMparser();
+    private Controller controller = new Controller();
+    private MainWindowTable mainWindowTable;
 
 
-
-    public MenuEvent (MainWindowTable mainWindowTable, Stage stage, Controller controller,FileChooser openFileChooser) {
+    public MenuEvent (MainWindowTable mainWindowTable, Stage stage, Controller controller) {
 
         menuBar = new MenuBar();
 
@@ -65,9 +66,10 @@ public class MenuEvent {
         });
 
         openFile.setAccelerator(KeyCombination.keyCombination("CTRL+X"));
-        openFile.setOnAction(actionEvent ->{   try {
-            getTableDataFromFile(stage,openFileChooser);
-        } catch (IOException | SAXException | ParserConfigurationException e) {
+        openFile.setOnAction(actionEvent ->{
+            try {
+            getTableDataFromFile(stage);
+            } catch (IOException | SAXException | ParserConfigurationException e) {
             e.printStackTrace();
         }
         });
@@ -81,12 +83,12 @@ public class MenuEvent {
         });
     }
 
-
-
-    public void getTableDataFromFile (Stage stage,FileChooser openFileChooser ) throws IOException, SAXException, ParserConfigurationException {
-        Controller controller = new Controller();
-
-        MainWindowTable mainWindowTable = new MainWindowTable(controller);
+    public void getTableDataFromFile (Stage stage ) throws IOException, SAXException, ParserConfigurationException {
+        FileChooser openFileChooser = new FileChooser();
+        openFileChooser.setTitle("Открытие файла");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("XML files (*.xml)","*.xml");
+        openFileChooser.setInitialDirectory(new File(("C:/Users/Евгений/Desktop/Study/2 курс/2 курс(2 сем)")));
+        openFileChooser.getExtensionFilters().add(extensionFilter);
         File file = openFileChooser.showOpenDialog(stage);
         if (file != null) {
             controller.insertTableData(file, saxParser);
@@ -97,8 +99,6 @@ public class MenuEvent {
 
     public void saveTableData(Stage primaryStage) throws TransformerException, ParserConfigurationException {
 
-        Controller controller = new Controller();
-        MainWindowTable mainWindowTable = new MainWindowTable(controller);
         FileChooser saveFileChooser = new FileChooser();
         saveFileChooser.setTitle("Cохранение файла");
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("XML files (*.xml)","*.xml");

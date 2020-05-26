@@ -67,7 +67,7 @@ public class Controller {
         parser = factory.newSAXParser();
         parser.parse(file, saxParser);
 
-        mainTableData = saxParser.getPatients();
+        mainTableData = saxParser.getProduct();
     }
 
     public Page<Product> updateSearchWindowTable(int pageNumber, int recordsOnPageCount) {
