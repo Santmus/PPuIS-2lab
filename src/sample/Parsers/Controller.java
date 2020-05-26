@@ -11,6 +11,7 @@ import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -28,7 +29,7 @@ public class Controller {
     private DOMparser parser;
     private Product product;
 
-    public void addPatientToArray(String productName,String manufacturerName,Integer unp_manufacturer,Integer quantity_in_stock,String warehouse_address) {
+    public void addProductToArray(String productName,String manufacturerName,Integer unp_manufacturer,Integer quantity_in_stock,String warehouse_address) {
 
         mainTableData.add(new Product(productName,manufacturerName,unp_manufacturer,quantity_in_stock,warehouse_address));
     }
@@ -65,7 +66,7 @@ public class Controller {
         parser.parse(mainTableData, file);
     }
 
-    public void searchProductNameAndQuantityInStock(String productName, Integer quantity_in_stock) {
+    public void searchProductNameAndQuantityInStock(String productName, String quantity_in_stock) {
         List<Product> searchResult = new ArrayList<>();
 
         for (Product product : mainTableData) {
@@ -76,7 +77,19 @@ public class Controller {
         searchTableData = searchResult;
     }
 
-    public void searchManufacturerNameAndUnpManufacturer(String manufacturerName,Integer unp_manufacturer){
+    public int deleteProductNameAndQuantityInStock(String productName, String quantity_in_stock){
+        int deleteNumber = 0;
+        for (Iterator<Product> iterator = mainTableData.iterator(); iterator.hasNext();) {
+            Product product = iterator.next();
+            if (product.getProductName().contains(productName) && product.getQuantity_in_stock().toString().equals(quantity_in_stock)) {
+                iterator.remove();
+                deleteNumber++;
+            }
+        }
+        return deleteNumber;
+    }
+
+    public void searchManufacturerNameAndUnpManufacturer(String manufacturerName,String unp_manufacturer){
         List<Product> searchResult = new ArrayList<>();
 
         for (Product product : mainTableData) {
@@ -97,14 +110,6 @@ public class Controller {
         }
         searchTableData = searchResult;
     }
-
-    public Page<Product> updateSearchWindowTable(int pageNumber, int recordsOnPageCount) {
-        return createPage(pageNumber, recordsOnPageCount, searchTableData);
-    }
-
-    /*public  void  deleteProductNameAndQuantityInStock(String productName, Integer quantityInStock) {
-
-    }*/
 
 
     public void insertTableData(File file, SAXParser parser) throws ParserConfigurationException, SAXException,

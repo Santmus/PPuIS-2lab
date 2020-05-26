@@ -70,7 +70,7 @@ public class AddProductWindow {
                 warning.showAndWait();
             }
             else {
-                controller.addPatientToArray(nameProductText.getText(), manufacturerNameText.getText(), Integer.parseInt(unp_manufacturerText.getText()), Integer.parseInt(quantity_in_stockText.getText()), warehouse_addressText.getText());
+                controller.addProductToArray(nameProductText.getText(), manufacturerNameText.getText(), Integer.parseInt(unp_manufacturerText.getText()), Integer.parseInt(quantity_in_stockText.getText()), warehouse_addressText.getText());
                 mainWindowTable.updateTable();
                 Stage stage = (Stage) add.getScene().getWindow();
                 stage.close();

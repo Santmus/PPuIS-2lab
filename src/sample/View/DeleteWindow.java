@@ -1,18 +1,28 @@
 package sample.View;
 
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Parsers.Controller;
 
 public class DeleteWindow {
 
-    /*
-    Условия поиска и удаления:
- -по названию товара или количеству на складе;
--названию производителя или УНП производителя
--по адресу склада;
-*/
+    public DeleteWindow(Stage primaryStage, Controller controller, MainWindowTable secondTableView) {
 
-    public  DeleteWindow(Stage stage, Controller controller,MainWindowTable mainWindowTable){
+        SearchDeleteGroup deleteGroup = new SearchDeleteGroup(controller, secondTableView, "Удаление");
 
+        BorderPane layout = new BorderPane();
+        layout.setCenter(deleteGroup.getAdding());
+        Scene scene = new Scene(layout, 400, 200);
+
+        Stage stage = new Stage();
+        stage.setTitle("Удаение");
+        stage.setScene(scene);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(primaryStage);
+
+        stage.show();
     }
+
 }

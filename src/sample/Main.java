@@ -15,7 +15,9 @@ import org.xml.sax.SAXException;
 import sample.Parsers.Controller;
 import sample.Parsers.DOMparser;
 import sample.Product.AddProductWindow;
+import sample.View.DeleteWindow;
 import sample.View.MainWindowTable;
+import sample.View.SearchWindow;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -61,7 +63,7 @@ public class Main extends Application {
 
         MenuItem openFile = new javafx.scene.control.MenuItem("Открыть файл");
         MenuItem  saveFile = new javafx.scene.control.MenuItem("Сохранить файл");
-        MenuItem searchLine = new javafx.scene.control.MenuItem("Поиск строки");
+        MenuItem searchLine = new javafx.scene.control.MenuItem("Поиск");
         MenuItem deleteLine = new javafx.scene.control.MenuItem("Удалить");
         MenuItem getLine = new javafx.scene.control.MenuItem("Добавить");
         MenuItem exitProgram = new MenuItem("Выйти из программы");
@@ -97,7 +99,16 @@ public class Main extends Application {
             new AddProductWindow(insertTableElements,stage, controller);
         });
 
+        searchLine.setAccelerator(KeyCombination.keyCombination("CTRL+F4"));
+        searchLine.setOnAction(event -> new SearchWindow(stage,controller));
+
+        deleteLine.setAccelerator(KeyCombination.keyCombination("CTRL+F6"));
+        deleteLine.setOnAction(event -> new DeleteWindow(stage,controller,insertTableElements));
+
         return menuBar;
+
+
+
     }
 
     public void getTableDataFromFile() throws IOException, SAXException, ParserConfigurationException{
