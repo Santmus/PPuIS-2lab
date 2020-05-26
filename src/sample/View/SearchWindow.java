@@ -11,18 +11,16 @@ import sample.Parsers.Controller;
 public class SearchWindow {
 
     private VBox layout;
-    private SearchDeleteGroup searchGroup;
-    private SearchWindowTableGroup secondGroup;
 
     public SearchWindow(Stage primaryStage, Controller controller) {
 
-        SearchDeleteGroup searchGroup = new SearchDeleteGroup(controller, secondGroup, "Поиск");
         SearchWindowTableGroup secondGroup = new SearchWindowTableGroup(controller);
+        SearchDeleteGroup searchGroup = new SearchDeleteGroup(controller, secondGroup, "Поиск");
 
         VBox layout = new VBox(5);
-        layout.getChildren().addAll(searchGroup.getAdding(),secondGroup.getAligner());
+        layout.getChildren().addAll(secondGroup.getAligner(),searchGroup.getAdding());
 
-        Scene scene = new Scene(layout, 1700, 980);
+        Scene scene = new Scene(layout, 1600, 900);
 
         Stage stage = new Stage();
         stage.setTitle("Поиск необходимого");

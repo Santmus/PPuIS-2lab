@@ -100,6 +100,18 @@ public class Controller {
         searchTableData = searchResult;
     }
 
+    public int deleteManufacturerNameAndUnpManufacturer(String manufacturerName, String unp_manufacturer){
+        int deleteNumber = 0;
+        for (Iterator<Product> iterator = mainTableData.iterator(); iterator.hasNext();) {
+            Product product = iterator.next();
+            if (product.getManufacturerName().contains(manufacturerName) && product.getUnp_manufacturer().toString().equals(unp_manufacturer)) {
+                iterator.remove();
+                deleteNumber++;
+            }
+        }
+        return deleteNumber;
+    }
+
     public void searchWarehouseAddress(String warehouse_address){
         List<Product> searchResult = new ArrayList<>();
 
@@ -111,6 +123,17 @@ public class Controller {
         searchTableData = searchResult;
     }
 
+    public int deleteWarehouseAddress(String warehouse_address){
+        int deleteNumber = 0;
+        for (Iterator<Product> iterator = mainTableData.iterator(); iterator.hasNext();) {
+            Product product = iterator.next();
+            if (product.getWarehouse_address().contains(warehouse_address)) {
+                iterator.remove();
+                deleteNumber++;
+            }
+        }
+        return deleteNumber;
+    }
 
     public void insertTableData(File file, SAXParser parser) throws ParserConfigurationException, SAXException,
                                                                                                        IOException {
