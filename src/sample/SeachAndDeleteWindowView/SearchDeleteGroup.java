@@ -166,11 +166,10 @@ public class SearchDeleteGroup {
 
                     }
                     firstParametrSearch.clear();
-                    secondParametrSearch.clear();
 
                     secondGroup.setPageNumber(1);
                     secondGroup.updateTable();
-                    exit(exit);
+                    
                 });
             }
         });
