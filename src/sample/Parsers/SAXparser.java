@@ -14,7 +14,7 @@ public class SAXparser extends DefaultHandler {
     private String thisElement;
     private String productName,manufacturerName,warehouse_address;
     private Integer unp_manufacturer,quantity_in_stock;
-    private int readCounter = 0;
+    private int read = 0;
 
     @Override
     public void startDocument() throws SAXException { System.out.println("Start parse XML..."); }
@@ -48,11 +48,11 @@ public class SAXparser extends DefaultHandler {
     @Override
     public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
         if (!thisElement.equals("tableDate")) {
-            readCounter++;
+            read++;
         }
-        if (readCounter == 6) {
+        if (read == 6) {
             product.add(new Product(productName,manufacturerName,unp_manufacturer,quantity_in_stock,warehouse_address));
-            readCounter = 0;
+            read = 0;
         }
         thisElement = " ";
     }

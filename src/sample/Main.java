@@ -29,12 +29,13 @@ import java.io.IOException;
 public class Main extends Application {
 
     private FlowPane root;
-    private Pane pane;
+
     private Controller controller = new Controller();
     private MainWindowTable insertTableElements= new MainWindowTable(controller);
     private Stage stage;
     private SAXParser saxParser;
     private DOMparser domParser = new DOMparser();
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -42,11 +43,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        pane = new VBox();
-        pane.getChildren().addAll(createMenu());
-
         root = new FlowPane(15,0);
-        root.getChildren().addAll(pane,insertTableElements.getAligner());
+        root.getChildren().addAll(createMenu(),insertTableElements.getAligner());
 
         Scene scene = new Scene(root,960,735);
         primaryStage.setScene(scene);
@@ -106,9 +104,6 @@ public class Main extends Application {
         deleteLine.setOnAction(event -> new DeleteWindow(stage,controller,insertTableElements));
 
         return menuBar;
-
-
-
     }
 
     public void getTableDataFromFile() throws IOException, SAXException, ParserConfigurationException{
@@ -138,7 +133,5 @@ public class Main extends Application {
             controller.saveTableData(file, domParser);
         }
     }
-
-
 
 }

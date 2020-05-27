@@ -15,9 +15,9 @@ import java.util.Iterator;
 import java.util.List;
 
 
-    /*
-    Условия поиска и удаления:
- -по названию товара или количеству на складе; +
+/*
+  Условия поиска и удаления:
+-по названию товара или количеству на складе; +
 -названию производителя или УНП производителя
 -по адресу склада;
 */
@@ -29,7 +29,7 @@ public class Controller {
     private DOMparser parser;
     private Product product;
 
-    public void addProductToArray(String productName,String manufacturerName,Integer unp_manufacturer,Integer quantity_in_stock,String warehouse_address) {
+    public void addProductToList(String productName,String manufacturerName,Integer unp_manufacturer,Integer quantity_in_stock,String warehouse_address) {
 
         mainTableData.add(new Product(productName,manufacturerName,unp_manufacturer,quantity_in_stock,warehouse_address));
     }

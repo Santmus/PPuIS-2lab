@@ -32,8 +32,7 @@ public class AddProductWindow {
         addProductStage.setScene(secondScene);
         addProductStage.initModality(Modality.WINDOW_MODAL);
         addProductStage.initOwner(primaryStage);
-
-        addProductStage .show();
+        addProductStage.show();
     }
 
     public VBox getWindow() {
@@ -70,7 +69,7 @@ public class AddProductWindow {
                 warning.showAndWait();
             }
             else {
-                controller.addProductToArray(nameProductText.getText(), manufacturerNameText.getText(), Integer.parseInt(unp_manufacturerText.getText()), Integer.parseInt(quantity_in_stockText.getText()), warehouse_addressText.getText());
+                controller.addProductToList(nameProductText.getText(), manufacturerNameText.getText(), Integer.parseInt(unp_manufacturerText.getText()), Integer.parseInt(quantity_in_stockText.getText()), warehouse_addressText.getText());
                 mainWindowTable.updateTable();
                 Stage stage = (Stage) add.getScene().getWindow();
                 stage.close();

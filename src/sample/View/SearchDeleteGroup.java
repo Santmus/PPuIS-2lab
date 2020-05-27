@@ -3,6 +3,7 @@ package sample.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -17,10 +18,11 @@ public class SearchDeleteGroup {
     private TextField firstParametrSearch;
     private TextField secondParametrSearch;
     private Label addingProductName, addinQuantityInStock;
+   private  Label addingManufacturerName,addingUnpManufacturer;
     private Button searchAndDeleteButton, exit;
     private VBox adding;
 
-    public SearchDeleteGroup(Controller controller, MainWindowTable secondGroup, String searchOrDelete) {
+    public SearchDeleteGroup(Controller controller, MainWindowTable secondGroup,String searchOrDelete) {
 
         ObservableList<String> chooseSearchParametersValues = FXCollections.observableArrayList(
                 "-по названию товара и количеству на складе", "-названию производителя и УНП производителя", "-по адресу склада");
@@ -36,9 +38,8 @@ public class SearchDeleteGroup {
 
         adding.getChildren().addAll(searchText, chooseSearchParameters);
 
-
         chooseSearchParameters.setOnAction(actionEvent -> {
-            if (chooseSearchParameters.getItems().contains("-по названию товара и количеству на складе")) {
+            if (chooseSearchParameters.getValue().contains("-по названию товара и количеству на складе")) {
 
                 searchAndDeleteButton = new Button(searchOrDelete);
                 searchAndDeleteButton.setPrefSize(100, 20);
@@ -52,24 +53,75 @@ public class SearchDeleteGroup {
                 secondParametrSearch = new TextField();
                 secondParametrSearch.setPrefSize(60, 10);
 
-                adding.getChildren().addAll(addingProductName, firstParametrSearch, addinQuantityInStock, secondParametrSearch, searchAndDeleteButton);
+                exit = new Button("Выход из " + searchOrDelete + "a");
+
+                adding.getChildren().addAll(addingProductName, firstParametrSearch, addinQuantityInStock, secondParametrSearch, searchAndDeleteButton, exit);
 
                 searchAndDeleteButton.setOnAction(event -> {
+
+                    checkoutParametrsSearch(firstParametrSearch.getText(), secondParametrSearch.getText());
+
                     if (searchOrDelete.equals("Поиск")) {
-                        checkoutParametrsSearch(firstParametrSearch.getText(), secondParametrSearch.getText());
+
                         controller.searchProductNameAndQuantityInStock(firstParametrSearch.getText(), secondParametrSearch.getText());
+
                     } else {
+
                         int deleteNumber = controller.deleteProductNameAndQuantityInStock(firstParametrSearch.getText(), secondParametrSearch.getText());
                         Stage stage = (Stage) searchAndDeleteButton.getScene().getWindow();
                         stage.close();
                         showDeleteInformation(deleteNumber);
+
+                    }
+                    firstParametrSearch.clear();
+                    secondParametrSearch.clear();
+                    secondGroup.setPageNumber(1);
+                    secondGroup.updateTable();
+                    exit(exit);
+                });
+
+            } else if (chooseSearchParameters.getValue().contains("-названию производителя и УНП производителя")) {
+
+                searchAndDeleteButton = new Button(searchOrDelete);
+                searchAndDeleteButton.setPrefSize(100, 20);
+
+                addingManufacturerName = new Label("Имя производителя");
+                addingUnpManufacturer = new Label("УНП предприятия");
+
+                firstParametrSearch = new TextField();
+                firstParametrSearch.setPrefSize(60, 10);
+
+                secondParametrSearch = new TextField();
+                secondParametrSearch.setPrefSize(60, 10);
+
+                exit = new Button("Выход из " + searchOrDelete + "a");
+
+                adding.getChildren().addAll(addingManufacturerName, firstParametrSearch, addingUnpManufacturer, secondParametrSearch, searchAndDeleteButton,exit);
+                searchAndDeleteButton.setOnAction(event -> {
+
+                    checkoutParametrsSearch(firstParametrSearch.getText(), secondParametrSearch.getText());
+
+                    if (searchOrDelete.equals("Поиск")) {
+
+                        controller.searchManufacturerNameAndUnpManufacturer(firstParametrSearch.getText(), secondParametrSearch.getText());
+
+                    } else {
+
+                        int deleteNumber = controller.deleteManufacturerNameAndUnpManufacturer(firstParametrSearch.getText(), secondParametrSearch.getText());
+                        Stage stage = (Stage) searchAndDeleteButton.getScene().getWindow();
+                        stage.close();
+                        showDeleteInformation(deleteNumber);
+
                     }
                     secondGroup.setPageNumber(1);
                     secondGroup.updateTable();
+                    exit(exit);
                 });
 
             }
+
         });
+
     }
     public VBox getAdding(){
         return adding;
