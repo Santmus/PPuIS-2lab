@@ -1,1 +1,365 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><tableData><product id="0"><productName>Черный металл</productName><manufacturerName>ГомельОблСтрой</manufacturerName><unp_manufacturer>232102301</unp_manufacturer><quantity_in_stock>100</quantity_in_stock><warehouse_address>г.Гомель,ул.Владимирова 20,склад 5</warehouse_address></product><product id="1"><productName>Лист металлический 25 мм</productName><manufacturerName>ГомельОблСтрой</manufacturerName><unp_manufacturer>164250333</unp_manufacturer><quantity_in_stock>15</quantity_in_stock><warehouse_address>г.Гомель,ул.Владимирова 20</warehouse_address></product><product id="2"><productName>Цинк</productName><manufacturerName>МинАзотСтрой</manufacturerName><unp_manufacturer>520600100</unp_manufacturer><quantity_in_stock>1600</quantity_in_stock><warehouse_address>г.Минск,ул.Якуба Коласа 28</warehouse_address></product><product id="3"><productName>Цветной металл</productName><manufacturerName>ГомельОблСтрой</manufacturerName><unp_manufacturer>135620444</unp_manufacturer><quantity_in_stock>55</quantity_in_stock><warehouse_address>ул.Гомель,ул.Мазурова 70а</warehouse_address></product></tableData>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tableData>
+	<product id="0">
+		<productName>Черный металл</productName>
+		<manufacturerName>ГомельОблСтрой</manufacturerName>
+		<unp_manufacturer>232102301</unp_manufacturer>
+		<quantity_in_stock>100</quantity_in_stock>
+		<warehouse_address>г.Гомель,ул.Владимирова 20</warehouse_address>
+		</product>
+	<product id="1">
+		<productName>Лист металлический 25 мм</productName>
+		<manufacturerName>МинскОблСтрой</manufacturerName>
+		<unp_manufacturer>164250333</unp_manufacturer>
+		<quantity_in_stock>15</quantity_in_stock>
+		<warehouse_address>г.Брест,ул.Свободы 12,скл. 2</warehouse_address>
+	</product>
+	<product id="2">
+		<productName>Цинк</productName>
+		<manufacturerName>МинОблСтрой</manufacturerName>
+		<unp_manufacturer>520600100</unp_manufacturer>
+		<quantity_in_stock>1600</quantity_in_stock>
+		<warehouse_address>Минская обл,г.Покалюбичи,ул.Петровича 12</warehouse_address>
+	</product>
+	<product id="3">
+		<productName>Уголок сдвоенный</productName>
+		<manufacturerName>Евросетка</manufacturerName>
+		<unp_manufacturer>240369100</unp_manufacturer>
+		<quantity_in_stock>15</quantity_in_stock>
+		<warehouse_address>г.Гомель,ул.Сурганова 12,скл. 2</warehouse_address>
+	</product>
+	<product id="4">
+		<productName>Асфаьт бетованный</productName>
+		<manufacturerName>ГосАвтоИнспекция</manufacturerName>
+		<unp_manufacturer>365200167</unp_manufacturer>
+		<quantity_in_stock>162</quantity_in_stock>
+		<warehouse_address>г.Минск,пл.Независимости 26</warehouse_address>
+	</product>
+	<product id="5">
+		<productName>Лист металлический 20 мм</productName>
+		<manufacturerName>Бресткий Объеденительный трест</manufacturerName>
+		<unp_manufacturer>620145000</unp_manufacturer>
+		<quantity_in_stock>12</quantity_in_stock>
+		<warehouse_address>г Брест,ул.Максима Богдановича 12</warehouse_address>
+	</product>
+	<product id="6">
+		<productName>Песок</productName>
+		<manufacturerName>ООО Гидромеханизация</manufacturerName>
+		<unp_manufacturer>153656000</unp_manufacturer>
+		<quantity_in_stock>666042</quantity_in_stock>
+		<warehouse_address>г.Гомель,ул.Востания 15,скл.4</warehouse_address>
+	</product>
+	<product id="7">
+		<productName>Цветной металл</productName>
+		<manufacturerName>ГомельОблСтрой</manufacturerName>
+		<unp_manufacturer>135620444</unp_manufacturer>
+		<quantity_in_stock>55</quantity_in_stock>
+		<warehouse_address>г.Гомель,ул.Мазурова 70а</warehouse_address>
+	</product>
+	<product id="8">
+		<productName>Лист металлический 12 мм</productName>
+		<manufacturerName>СуперСтройСоюз</manufacturerName>
+		<unp_manufacturer>245960213</unp_manufacturer>
+		<quantity_in_stock>112</quantity_in_stock>
+		<warehouse_address>п.Дворовое,ул.Кирова 12,скл.4</warehouse_address>
+	</product>
+	<product id="9">
+		<productName>Черный лист х/л 12 мм</productName>
+		<manufacturerName>СуперСтройСоюз</manufacturerName>
+		<unp_manufacturer>135620444</unp_manufacturer>
+		<quantity_in_stock>5</quantity_in_stock>
+		<warehouse_address>п.Дворовое,ул.Кирова 12,скл.3</warehouse_address>
+	</product>
+	<product id="10">
+	<productName>Уголок 8 мм </productName>
+	<manufacturerName>MinskInternationalBuilding</manufacturerName>
+	<unp_manufacturer>225460112</unp_manufacturer>
+	<quantity_in_stock>0</quantity_in_stock>
+	<warehouse_address>г.Минск,ул.Интернациональная 12А,скл.5</warehouse_address>
+</product>
+	<product id="11">
+		<productName>Щебёнка</productName>
+		<manufacturerName>Витебский объединенный трест</manufacturerName>
+		<unp_manufacturer>532102200</unp_manufacturer>
+		<quantity_in_stock>1100</quantity_in_stock>
+		<warehouse_address>г.Витебск,2-пер Якуба Коласа 12</warehouse_address>
+	</product>
+	<product id="12">
+		<productName>Черный металл х/н</productName>
+		<manufacturerName>Могилёвский строительный союз</manufacturerName>
+		<unp_manufacturer>458976320</unp_manufacturer>
+		<quantity_in_stock>12</quantity_in_stock>
+		<warehouse_address>а.г.Сухое,ул.Чиканна 12,скд.1</warehouse_address>
+	</product>
+	<product id="13">
+		<productName>Лист металлический 15 мм </productName>
+		<manufacturerName>Беллоруский металлургический завод</manufacturerName>
+		<unp_manufacturer>245600010</unp_manufacturer>
+		<quantity_in_stock>55</quantity_in_stock>
+		<warehouse_address>г.Жлобин,ул.Заводская 11,скл. 12</warehouse_address>
+	</product>
+	<product id="14">
+		<productName>Черный металл х/н</productName>
+		<manufacturerName>European Assosiation of Building</manufacturerName>
+		<unp_manufacturer>685220000</unp_manufacturer>
+		<quantity_in_stock>16000</quantity_in_stock>
+		<warehouse_address>Warshaw,Statkevich st 45</warehouse_address>
+	</product>
+
+	<product id="15">
+		<productName>Лист металлический 10 мм</productName>
+		<manufacturerName>Могилёвский строительный союз</manufacturerName>
+		<unp_manufacturer>458976320</unp_manufacturer>
+		<quantity_in_stock>12</quantity_in_stock>
+		<warehouse_address>а.г.Сухое,ул.Чиканна 12,скд.1</warehouse_address>
+	</product>
+	<product id="16">
+		<productName>Уголок сдвоенный</productName>
+		<manufacturerName>Евросетка</manufacturerName>
+		<unp_manufacturer>240369100</unp_manufacturer>
+		<quantity_in_stock>26</quantity_in_stock>
+		<warehouse_address>ул.Гомель,ул.Сурганова 12,скл. 2</warehouse_address>
+	</product>
+	<product id="17">
+		<productName>Лист металлический 2 мм</productName>
+		<manufacturerName>ГомельОблСтрой</manufacturerName>
+		<unp_manufacturer>135620444</unp_manufacturer>
+		<quantity_in_stock>55</quantity_in_stock>
+		<warehouse_address>ул.Гомель,ул.Мазурова 70а</warehouse_address>
+	</product>
+	<product id="18">
+		<productName>Арматура</productName>
+		<manufacturerName>Евросетка</manufacturerName>
+		<unp_manufacturer>240369100</unp_manufacturer>
+		<quantity_in_stock>120</quantity_in_stock>
+		<warehouse_address>ул.Гомель,ул.Сурганова 12,скл. 4</warehouse_address>
+	</product>
+	<product id="19">
+		<productName>Песок</productName>
+		<manufacturerName>Могилёвский строительный союз</manufacturerName>
+		<unp_manufacturer>458976320</unp_manufacturer>
+		<quantity_in_stock>0</quantity_in_stock>
+		<warehouse_address>а.г.Сухое,ул.Чиканна 12,скд.1</warehouse_address>
+	</product>
+	<product id="20">
+		<productName>Лист металлический 6 мм</productName>
+		<manufacturerName>Беллоруский металлургический завод</manufacturerName>
+		<unp_manufacturer>245600010</unp_manufacturer>
+		<quantity_in_stock>13</quantity_in_stock>
+		<warehouse_address>г.Жлобин,ул.Заводская 11,скл. 16</warehouse_address>
+</product>
+	<product id="21">
+		<productName>Одежда строительная универсальная</productName>
+		<manufacturerName>MinskInternationalBuilding</manufacturerName>
+		<unp_manufacturer>225460112</unp_manufacturer>
+		<quantity_in_stock>11</quantity_in_stock>
+		<warehouse_address>г.Минск,ул.Интернациональная 10</warehouse_address>
+</product>
+	<product id="22">
+		<productName>Арматура</productName>
+		<manufacturerName>ГомельОблСтрой</manufacturerName>
+		<unp_manufacturer>232102301</unp_manufacturer>
+		<quantity_in_stock>1503</quantity_in_stock>
+		<warehouse_address>г.Гомель,ул.Владимирова 20</warehouse_address>
+	</product>
+	<product id="23">
+		<productName>Уголок 2х12 мм</productName>
+		<manufacturerName>Беллоруский металлургический завод</manufacturerName>
+		<unp_manufacturer>245600010</unp_manufacturer>
+		<quantity_in_stock>0</quantity_in_stock>
+		<warehouse_address>г.Жлобин,ул.Заводская 10</warehouse_address>
+	</product>
+	<product id="24">
+		<productName>Песок намывной</productName>
+		<manufacturerName>ООО Гидромеханизация</manufacturerName>
+		<unp_manufacturer>153656000</unp_manufacturer>
+		<quantity_in_stock>250000</quantity_in_stock>
+		<warehouse_address>г.Гомель,ул.Востания 15,скл.1</warehouse_address>
+	</product>
+	<product id="25">
+		<productName>Лист металлический 5 мм</productName>
+		<manufacturerName>Могилёвский строительный союз</manufacturerName>
+		<unp_manufacturer>458976320</unp_manufacturer>
+		<quantity_in_stock>16</quantity_in_stock>
+		<warehouse_address>а.г.Сухое,ул.Свободы 10,кв.5</warehouse_address>
+	</product>
+	<product id="26">
+		<productName>Цветной металл</productName>
+		<manufacturerName>ГомельОблСтрой</manufacturerName>
+		<unp_manufacturer>135620444</unp_manufacturer>
+		<quantity_in_stock>55</quantity_in_stock>
+		<warehouse_address>ул.Гомель,ул.Мазурова 70а</warehouse_address>
+	</product>
+	<product id="27">
+		<productName>Черный металл</productName>
+		<manufacturerName>Могилёвский строительный союз</manufacturerName>
+		<unp_manufacturer>458976320</unp_manufacturer>
+		<quantity_in_stock>0</quantity_in_stock>
+		<warehouse_address>а.г.Сухое,ул.Свободы 10,кв.5</warehouse_address>
+	</product>
+	<product id="28">
+		<productName>Кран железнодорожный</productName>
+		<manufacturerName>Евросетка</manufacturerName>
+		<unp_manufacturer>240369100</unp_manufacturer>
+		<quantity_in_stock>1</quantity_in_stock>
+		<warehouse_address>ул.Гомель,ул.Владимирова 1Г,скл. 2</warehouse_address>
+</product>
+	<product id="29">
+		<productName>Цветной металл х/н 12 мм</productName>
+		<manufacturerName>ГомельОблСтрой</manufacturerName>
+		<unp_manufacturer>135620444</unp_manufacturer>
+		<quantity_in_stock>55</quantity_in_stock>
+		<warehouse_address>ул.Гомель,ул.Мазурова 70а</warehouse_address>
+	</product>
+	<product id="30">
+		<productName>Одежда строительная специальная</productName>
+		<manufacturerName>MinskInternationalBuilding</manufacturerName>
+		<unp_manufacturer>225460112</unp_manufacturer>
+		<quantity_in_stock>11</quantity_in_stock>
+		<warehouse_address>г.Минск,ул.Интернациональная 10</warehouse_address>
+	</product>
+	<product id="31">
+		<productName>Лист метталический 2 мм</productName>
+		<manufacturerName>ГомельОблСтрой</manufacturerName>
+		<unp_manufacturer>232102301</unp_manufacturer>
+		<quantity_in_stock>0</quantity_in_stock>
+		<warehouse_address>г.Гомель,ул.Владимирова 20</warehouse_address>
+	</product>
+	<product id="32">
+		<productName>Арматура ржавая</productName>
+		<manufacturerName>Могилёвский строительный союз</manufacturerName>
+		<unp_manufacturer>458976320</unp_manufacturer>
+		<quantity_in_stock>125</quantity_in_stock>
+		<warehouse_address>а.г.Сухое,ул.Чиканна 12а,скд.4</warehouse_address>
+	</product>
+	<product id="33">
+		<productName>Лист металлический 15 мм</productName>
+		<manufacturerName>Беллоруский металлургический завод</manufacturerName>
+		<unp_manufacturer>245600010</unp_manufacturer>
+		<quantity_in_stock>515</quantity_in_stock>
+		<warehouse_address>г.Жлобин,площадь Свободы 1</warehouse_address>
+	</product>
+	<product id="34">
+		<productName>Кран железнодорожный</productName>
+		<manufacturerName>European Assosiation of Building</manufacturerName>
+		<unp_manufacturer>145289300</unp_manufacturer>
+		<quantity_in_stock>12</quantity_in_stock>
+		<warehouse_address>г.Витебск,бульвар Дунина-Марцинкевича 14,кв.15</warehouse_address>
+	</product>
+
+	<product id="35">
+		<productName>Лист металлический 12 мм</productName>
+		<manufacturerName>Могилёвский строительный союз</manufacturerName>
+		<unp_manufacturer>458976320</unp_manufacturer>
+		<quantity_in_stock>0</quantity_in_stock>
+		<warehouse_address>а.г.Сухое,ул.Чиканна 12,скд.1</warehouse_address>
+	</product>
+	<product id="36">
+		<productName>Черный металл х/н</productName>
+		<manufacturerName>Евросетка</manufacturerName>
+		<unp_manufacturer>240369100</unp_manufacturer>
+		<quantity_in_stock>2</quantity_in_stock>
+		<warehouse_address>ул.Гомель,ул.Сурганова 12,скл. 2</warehouse_address>
+	</product>
+	<product id="37">
+		<productName>Лист металлический цветной 2 мм</productName>
+		<manufacturerName>ГомельОблСтрой</manufacturerName>
+		<unp_manufacturer>135620444</unp_manufacturer>
+		<quantity_in_stock>0</quantity_in_stock>
+		<warehouse_address>ул.Гомель,ул.Мазурова 70а</warehouse_address>
+	</product>
+	<product id="38">
+		<productName>Уголок</productName>
+		<manufacturerName>European Assosiation of Building</manufacturerName>
+		<unp_manufacturer>685220000</unp_manufacturer>
+		<quantity_in_stock>15000</quantity_in_stock>
+		<warehouse_address>Warshaw,Statkevich st 45</warehouse_address>
+	</product>
+	<product id="39">
+		<productName>Компелк Инд.Раб.Одежлы №2</productName>
+		<manufacturerName>European Assosiation of Building</manufacturerName>
+		<unp_manufacturer>120000000</unp_manufacturer>
+		<quantity_in_stock>50000</quantity_in_stock>
+		<warehouse_address>London,Shagall st. 45</warehouse_address>
+	</product>
+	<product id="40">
+		<productName>Треугольник цинковый</productName>
+		<manufacturerName>Беллоруский металлургический завод</manufacturerName>
+		<unp_manufacturer>245600010</unp_manufacturer>
+		<quantity_in_stock>0</quantity_in_stock>
+		<warehouse_address>г.Жлобин,ул.Заводская 11,скл. 16</warehouse_address>
+	</product>
+	<product id="41">
+		<productName>Треугольник цинковый</productName>
+		<manufacturerName>MinskInternationalBuilding</manufacturerName>
+		<unp_manufacturer>225460112</unp_manufacturer>
+		<quantity_in_stock>22</quantity_in_stock>
+		<warehouse_address>г.Минск,ул.Интернациональная 10</warehouse_address>
+	</product>
+	<product id="42">
+		<productName>Лист металлический 17 мм</productName>
+		<manufacturerName>МинскОблСтрой</manufacturerName>
+		<unp_manufacturer>164250333</unp_manufacturer>
+		<quantity_in_stock>20</quantity_in_stock>
+		<warehouse_address>г.Брест,ул.Свободы 12,скл. 2</warehouse_address>
+	</product>
+	<product id="43">
+		<productName>Цинк обработанный</productName>
+		<manufacturerName>МинОблСтрой</manufacturerName>
+		<unp_manufacturer>546320145</unp_manufacturer>
+		<quantity_in_stock>125</quantity_in_stock>
+		<warehouse_address>Минская обл,п.Любовичи,скл.2</warehouse_address>
+	</product>
+	<product id="44">
+		<productName>Лист металлический 10 мм</productName>
+		<manufacturerName>Евросетка</manufacturerName>
+		<unp_manufacturer>240369100</unp_manufacturer>
+		<quantity_in_stock>15</quantity_in_stock>
+		<warehouse_address>г.Гомель,ул.Сурганова 12,скл. 2</warehouse_address>
+	</product>
+	<product id="45">
+		<productName>Краска для разметки</productName>
+		<manufacturerName>ГосАвтоИнспекция</manufacturerName>
+		<unp_manufacturer>152360150</unp_manufacturer>
+		<quantity_in_stock>520</quantity_in_stock>
+		<warehouse_address>г.Барановичи,ул.Янки Купалы 12</warehouse_address>
+	</product>
+	<product id="46">
+		<productName>Лист металлический 2,5 мм</productName>
+		<manufacturerName>Бресткий Объеденительный трест</manufacturerName>
+		<unp_manufacturer>620145000</unp_manufacturer>
+		<quantity_in_stock>120</quantity_in_stock>
+		<warehouse_address>г Брест,ул.Максима Богдановича 12</warehouse_address>
+	</product>
+	<product id="47">
+		<productName>Щебёнка</productName>
+		<manufacturerName>Гомельский объединенный трест</manufacturerName>
+		<unp_manufacturer>455682000</unp_manufacturer>
+		<quantity_in_stock>36</quantity_in_stock>
+		<warehouse_address>Гомельская обл,п.Костюковка,ул.Крестянская 12</warehouse_address>
+	</product>
+	<product id="48">
+		<productName>Цинковый металл х/н</productName>
+		<manufacturerName>Могилёвский строительный союз</manufacturerName>
+		<unp_manufacturer>458976320</unp_manufacturer>
+		<quantity_in_stock>12</quantity_in_stock>
+		<warehouse_address>а.г.Сухое,ул.Чиканна 12,скд.1</warehouse_address>
+	</product>
+	<product id="49">
+		<productName>Лист металлический 25 мм </productName>
+		<manufacturerName>Беллоруский металлургический завод</manufacturerName>
+		<unp_manufacturer>245600010</unp_manufacturer>
+		<quantity_in_stock>55</quantity_in_stock>
+		<warehouse_address>г.Жлобин,ул.Заводская 11,скл. 12</warehouse_address>
+	</product>
+	<product id="50">
+		<productName>Барабан 16x20 мм </productName>
+		<manufacturerName>European Assosiation of Building</manufacturerName>
+		<unp_manufacturer>685220000</unp_manufacturer>
+		<quantity_in_stock>16000</quantity_in_stock>
+		<warehouse_address>Warshaw,Statkevich st 45</warehouse_address>
+	</product>
+
+
+
+</tableData>

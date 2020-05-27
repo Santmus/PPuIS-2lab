@@ -52,7 +52,7 @@ public class MainWindowTable {
         TableColumn<Product, String> warehouse_addressColumn = new TableColumn<>("Адрес склада");
         warehouse_addressColumn.setCellValueFactory(new PropertyValueFactory<>("warehouse_address"));
 
-        table.setPrefSize(968,520);
+        table.setPrefSize(960,520);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         table.getColumns().add(productNameColumn);
@@ -169,7 +169,7 @@ public class MainWindowTable {
         numberOfPages.setText("Количество страниц:" + getPageCount());
         totalRecordsCount = currentPage.getTotalRecordsCount();
         totalRecordsCountLabel.setText("Всего товаров в списке:" + getTotalRecordsCount());
-        pageNumberLabel.setText("Всего товаров в списке:" + currentPage.getPageNumber());
+        pageNumberLabel.setText("Cтраница:" + currentPage.getPageNumber());
     }
 
     public void updateCurrentPage() {
