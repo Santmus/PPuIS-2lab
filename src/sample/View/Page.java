@@ -29,7 +29,7 @@ public class Page<T> {
         return totalRecordsCount;
     }
 
-    public List<Product> getPatients() {
+    public List<Product> getProduct() {
         return pageData;
     }
 }

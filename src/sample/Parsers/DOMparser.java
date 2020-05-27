@@ -20,7 +20,7 @@ public class DOMparser {
     public void parse(List<Product> tableData, File file) throws ParserConfigurationException, TransformerException {
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder ;
+        DocumentBuilder docBuilder;
         try {
             docBuilder = docFactory.newDocumentBuilder();
             Document document = docBuilder.newDocument();

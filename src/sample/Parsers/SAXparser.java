@@ -26,23 +26,31 @@ public class SAXparser extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
+
         if (thisElement.equals("productName")) {
             productName = new String(ch, start, length);
+            System.out.print("Товар: \n" + productName + " ");
         }
-        if (thisElement.equals("manufacturerName")) {
+        else if (thisElement.equals("manufacturerName")) {
             manufacturerName = new String(ch, start, length);
+            System.out.print(manufacturerName + " ");
         }
-        if (thisElement.equals("unp_manufacturer")) {
+        else if (thisElement.equals("unp_manufacturer")) {
             String unp_manufacturerText = new String(ch, start, length);
             unp_manufacturer = Integer.parseInt(unp_manufacturerText);
+            System.out.print(unp_manufacturer + " ");
         }
-        if (thisElement.equals("quantity_in_stock")) {
+        else if (thisElement.equals("quantity_in_stock")) {
             String quantity_in_stockText = new String(ch, start, length);
             quantity_in_stock = Integer.parseInt(quantity_in_stockText);
+            System.out.print(quantity_in_stock + " ");
         }
-        if (thisElement.equals("warehouse_address")) {
+        else if (thisElement.equals("warehouse_address")) {
             warehouse_address = new String(ch, start, length);
+            System.out.print(warehouse_address + "\n\n");
+
         }
+
     }
 
     @Override
@@ -56,7 +64,6 @@ public class SAXparser extends DefaultHandler {
         }
         thisElement = " ";
     }
-
     @Override
     public void endDocument() { System.out.println("Stop parse XML..."); }
 

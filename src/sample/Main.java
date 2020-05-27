@@ -58,7 +58,7 @@ public class Main extends Application {
         Menu editData = new javafx.scene.control.Menu("Редактировать");
 
         MenuItem openFile = new javafx.scene.control.MenuItem("Открыть файл");
-        MenuItem  saveFile = new javafx.scene.control.MenuItem("Сохранить файл");
+        MenuItem saveFile = new javafx.scene.control.MenuItem("Сохранить файл");
         MenuItem searchLine = new javafx.scene.control.MenuItem("Поиск");
         MenuItem deleteLine = new javafx.scene.control.MenuItem("Удалить");
         MenuItem getLine = new javafx.scene.control.MenuItem("Добавить");

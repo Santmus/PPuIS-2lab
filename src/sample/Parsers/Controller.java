@@ -138,16 +138,15 @@ public class Controller {
         return deleteNumber;
     }
 
-    public void insertTableData(File file, SAXParser parser) throws ParserConfigurationException, SAXException,
+    public void insertTableData(File file, SAXParser saxParser) throws ParserConfigurationException, SAXException,
                                                                                                        IOException {
-        SAXparser saxParser = new SAXparser();
+        SAXparser saXparser = new SAXparser();
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
+        saxParser = factory.newSAXParser();
+        saxParser.parse(file, saXparser);
 
-        parser = factory.newSAXParser();
-        parser.parse(file, saxParser);
-
-        mainTableData = saxParser.getProduct();
+        mainTableData = saXparser.getProduct();
     }
 
     public Page<Product> updateSearchWindowTable(int pageNumber, int recordsOnPageCount) {
@@ -157,22 +156,23 @@ public class Controller {
 
     public void exit() {
         try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Выход из программы");
-            alert.setContentText("Вы точно уверены что хотите выйти?");
-            ButtonType yes = new ButtonType("Да");
-            ButtonType no = new ButtonType("Нет");
-            alert.getButtonTypes().clear();
-            alert.getButtonTypes().addAll(no, yes);
-            Optional<ButtonType> optional = alert.showAndWait();
-            if (optional.get() == yes) {
-                System.exit(0);
-            } else if (optional.get() == no) {
-                return;
-            }
+             Alert alert = new Alert(Alert.AlertType.NONE);
+             alert.setTitle("Выход из программы");
+             alert.setContentText("Вы точно уверены что хотите выйти?");
+             ButtonType yes = new ButtonType("Да");
+             ButtonType no = new ButtonType("Нет");
+             alert.getButtonTypes().clear();
+             alert.getButtonTypes().addAll(no, yes);
+             Optional<ButtonType> optional = alert.showAndWait();
+             if (optional.get() == yes) {
+                 System.exit(0);
+             }
+             else if (optional.get() == no) {
+                    return;
+             }
             } finally {
             return;
             }
-    }
+        }
 }
 

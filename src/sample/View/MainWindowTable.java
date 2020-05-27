@@ -164,7 +164,7 @@ public class MainWindowTable {
 
     public void updateTable() {
         updateCurrentPage();
-        productData.setAll((Collection<? extends Product>) currentPage.getPatients());
+        productData.setAll((Collection<? extends Product>) currentPage.getProduct());
         pageCount = currentPage.getPageCount();
         numberOfPages.setText("Количество страниц:" + getPageCount());
         totalRecordsCount = currentPage.getTotalRecordsCount();
@@ -185,7 +185,7 @@ public class MainWindowTable {
     }
 
 
-    public ObservableList<Product> getPatients() {
+    public ObservableList<Product> getProduct() {
         return this.productData;
     }
 
