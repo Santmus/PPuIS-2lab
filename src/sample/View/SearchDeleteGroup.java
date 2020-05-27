@@ -59,6 +59,8 @@ public class SearchDeleteGroup {
 
                 exit = new Button("Выход из " + searchOrDelete + "a");
 
+                exit(exit);
+
                 adding.getChildren().addAll(addingProductName, firstParametrSearch, addinQuantityInStock, secondParametrSearch, searchAndDeleteButton, exit);
 
                 searchAndDeleteButton.setOnAction(event -> {
@@ -103,7 +105,7 @@ public class SearchDeleteGroup {
                 secondParametrSearch.setPrefSize(60, 10);
 
                 exit = new Button("Выход из " + searchOrDelete + "a");
-
+                exit(exit);
                 adding.getChildren().addAll(addingManufacturerName, firstParametrSearch, addingUnpManufacturer, secondParametrSearch, searchAndDeleteButton,exit);
                 searchAndDeleteButton.setOnAction(event -> {
 
@@ -126,7 +128,7 @@ public class SearchDeleteGroup {
 
                     secondGroup.setPageNumber(1);
                     secondGroup.updateTable();
-                    exit(exit);
+
                 });
             }
             else if ((chooseSearchParameters.getValue().contains("-по адресу склада"))){
@@ -142,6 +144,7 @@ public class SearchDeleteGroup {
                 firstParametrSearch.setPrefSize(60, 10);
 
                 exit = new Button("Выход из " + searchOrDelete + "a");
+                exit(exit);
 
                 adding.getChildren().addAll(addingWarehouseAddress,firstParametrSearch,searchAndDeleteButton,exit);
 
