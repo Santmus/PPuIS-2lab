@@ -1,10 +1,12 @@
-package sample.View;
+package sample.SeachAndDeleteWindowView;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Parsers.Controller;
+import sample.SeachAndDeleteWindowView.SearchDeleteGroup;
+import sample.View.MainWindowTable;
 
 public class DeleteWindow {
 

@@ -1,4 +1,4 @@
-package sample.View;
+package sample.SeachAndDeleteWindowView;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.Parsers.Controller;
+import sample.View.MainWindowTable;
 
 public class SearchDeleteGroup {
 

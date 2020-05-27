@@ -1,5 +1,7 @@
 package sample.Parsers;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import org.xml.sax.SAXException;
 import sample.Product.Product;
 import sample.View.Page;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 
 /*
@@ -153,6 +156,23 @@ public class Controller {
 
 
     public void exit() {
-        System.exit(0);
+        try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Выход из программы");
+            alert.setContentText("Вы точно уверены что хотите выйти?");
+            ButtonType yes = new ButtonType("Да");
+            ButtonType no = new ButtonType("Нет");
+            alert.getButtonTypes().clear();
+            alert.getButtonTypes().addAll(no, yes);
+            Optional<ButtonType> optional = alert.showAndWait();
+            if (optional.get() == yes) {
+                System.exit(0);
+            } else if (optional.get() == no) {
+                return;
+            }
+            } finally {
+            return;
+            }
     }
 }
+

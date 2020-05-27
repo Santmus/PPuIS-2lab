@@ -1,8 +1,6 @@
-package sample.View;
+package sample.SeachAndDeleteWindowView;
 
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;

@@ -1,6 +1,7 @@
-package sample.View;
+package sample.SeachAndDeleteWindowView;
 
 import sample.Parsers.Controller;
+import sample.View.MainWindowTable;
 
 public class SearchWindowTableGroup extends MainWindowTable {
     private Controller controller;
