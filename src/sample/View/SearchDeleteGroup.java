@@ -18,8 +18,9 @@ public class SearchDeleteGroup {
     private TextField firstParametrSearch;
     private TextField secondParametrSearch;
     private Label addingProductName, addinQuantityInStock;
-   private  Label addingManufacturerName,addingUnpManufacturer;
+    private Label addingManufacturerName,addingUnpManufacturer;
     private Button searchAndDeleteButton, exit;
+    private Label addingWarehouseAddress;
     private VBox adding;
 
     public SearchDeleteGroup(Controller controller, MainWindowTable secondGroup,String searchOrDelete) {
@@ -41,11 +42,14 @@ public class SearchDeleteGroup {
         chooseSearchParameters.setOnAction(actionEvent -> {
             if (chooseSearchParameters.getValue().contains("-по названию товара и количеству на складе")) {
 
+                adding.getChildren().remove(2,adding.getChildren().size());
+
+
                 searchAndDeleteButton = new Button(searchOrDelete);
                 searchAndDeleteButton.setPrefSize(100, 20);
 
-                addingProductName = new Label("Введите имя продукта");
-                addinQuantityInStock = new Label("Введите кол-во на складе");
+                addingProductName = new Label("Введите имя продукта:");
+                addinQuantityInStock = new Label("Введите кол-во на складе:");
 
                 firstParametrSearch = new TextField();
                 firstParametrSearch.setPrefSize(60, 10);
@@ -75,6 +79,7 @@ public class SearchDeleteGroup {
                     }
                     firstParametrSearch.clear();
                     secondParametrSearch.clear();
+
                     secondGroup.setPageNumber(1);
                     secondGroup.updateTable();
                     exit(exit);
@@ -82,11 +87,14 @@ public class SearchDeleteGroup {
 
             } else if (chooseSearchParameters.getValue().contains("-названию производителя и УНП производителя")) {
 
+                adding.getChildren().remove(2,adding.getChildren().size());
+
+
                 searchAndDeleteButton = new Button(searchOrDelete);
                 searchAndDeleteButton.setPrefSize(100, 20);
 
-                addingManufacturerName = new Label("Имя производителя");
-                addingUnpManufacturer = new Label("УНП предприятия");
+                addingManufacturerName = new Label("Имя производителя:");
+                addingUnpManufacturer = new Label("УНП предприятия:");
 
                 firstParametrSearch = new TextField();
                 firstParametrSearch.setPrefSize(60, 10);
@@ -113,16 +121,70 @@ public class SearchDeleteGroup {
                         showDeleteInformation(deleteNumber);
 
                     }
+                    firstParametrSearch.clear();
+                    secondParametrSearch.clear();
+
                     secondGroup.setPageNumber(1);
                     secondGroup.updateTable();
                     exit(exit);
                 });
-
             }
+            else if ((chooseSearchParameters.getValue().contains("-по адресу склада"))){
 
+                adding.getChildren().remove(2,adding.getChildren().size());
+
+                searchAndDeleteButton = new Button(searchOrDelete);
+                searchAndDeleteButton.setPrefSize(100, 20);
+
+                addingWarehouseAddress = new Label("Адрес склада:");
+
+                firstParametrSearch = new TextField();
+                firstParametrSearch.setPrefSize(60, 10);
+
+                exit = new Button("Выход из " + searchOrDelete + "a");
+
+                adding.getChildren().addAll(addingWarehouseAddress,firstParametrSearch,searchAndDeleteButton,exit);
+
+                searchAndDeleteButton.setOnAction(event -> {
+
+                    checkoutParametrsSearch(firstParametrSearch.getText());
+
+                    if (searchOrDelete.equals("Поиск")) {
+
+                        controller.searchWarehouseAddress(firstParametrSearch.getText());
+
+                    } else {
+
+                        int deleteNumber = controller.deleteWarehouseAddress(firstParametrSearch.getText());
+                        Stage stage = (Stage) searchAndDeleteButton.getScene().getWindow();
+                        stage.close();
+                        showDeleteInformation(deleteNumber);
+
+                    }
+                    firstParametrSearch.clear();
+                    secondParametrSearch.clear();
+
+                    secondGroup.setPageNumber(1);
+                    secondGroup.updateTable();
+                    exit(exit);
+                });
+            }
         });
 
     }
+
+    private void checkoutParametrsSearch(String firstParametrSearch) {
+        if(firstParametrSearch.isEmpty()){
+            Alert error = new Alert(Alert.AlertType.WARNING);
+            error.setTitle("Ошибка");
+            error.setContentText("Не введены все данные");
+            error.show();
+        }
+        else {
+            return;
+        }
+    }
+
     public VBox getAdding(){
         return adding;
     }
