@@ -16,7 +16,7 @@ public class DeleteWindow {
 
         BorderPane layout = new BorderPane();
         layout.setCenter(deleteGroup.getAdding());
-        Scene scene = new Scene(layout, 400, 200);
+        Scene scene = new Scene(layout, 400, 280);
 
         Stage stage = new Stage();
         stage.setTitle("Удаение");

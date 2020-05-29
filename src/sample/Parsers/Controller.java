@@ -9,7 +9,6 @@ import sample.View.Page;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class Controller {
     private DOMparser parser;
     private Product product;
 
-    public void addProductToList(String productName,String manufacturerName,Integer unp_manufacturer,Integer quantity_in_stock,String warehouse_address) {
+    public void addProductToList(String productName,String manufacturerName,Integer unp_manufacturer,String quantity_in_stock,String warehouse_address) {
 
         mainTableData.add(new Product(productName,manufacturerName,unp_manufacturer,quantity_in_stock,warehouse_address));
     }
@@ -60,12 +59,10 @@ public class Controller {
         else pageData = tableData.subList((pageNumber - 1) * recordsOnPageCount,
                 tableData.size());
 
-        Page<Product> page = new Page<>(pageNumber, pageData, pageCount, tableData.size());
-        pageNumber = page.getPageNumber();
-        return page;
+        return new Page<>(pageNumber, pageData, pageCount, tableData.size());
     }
 
-    public void saveTableData(File file, DOMparser parser) throws TransformerException, ParserConfigurationException {
+    public void saveTableData(File file, DOMparser parser) {
         parser.parse(mainTableData, file);
     }
 
@@ -73,7 +70,7 @@ public class Controller {
         List<Product> searchResult = new ArrayList<>();
 
         for (Product product : mainTableData) {
-            if (product.getProductName().contains(productName) && product.getQuantity_in_stock().toString().equals(quantity_in_stock)) {
+            if (product.getProductName().contains(productName) && product.getQuantity_in_stock().contains(quantity_in_stock)) {
                 searchResult.add(product);
             }
         }
@@ -82,9 +79,10 @@ public class Controller {
 
     public int deleteProductNameAndQuantityInStock(String productName, String quantity_in_stock){
         int deleteNumber = 0;
-        for (Iterator<Product> iterator = mainTableData.iterator(); iterator.hasNext();) {
+        Iterator<Product> iterator = mainTableData.iterator();
+        while (iterator.hasNext()) {
             Product product = iterator.next();
-            if (product.getProductName().contains(productName) && product.getQuantity_in_stock().toString().equals(quantity_in_stock)) {
+            if (product.getProductName().contains(productName) && product.getQuantity_in_stock().contains(quantity_in_stock)) {
                 iterator.remove();
                 deleteNumber++;
             }
@@ -92,7 +90,7 @@ public class Controller {
         return deleteNumber;
     }
 
-    public void searchManufacturerNameAndUnpManufacturer(String manufacturerName,String unp_manufacturer){
+    public void searchManufacturerNameAndUnpManufacturer(String manufacturerName, String unp_manufacturer){
         List<Product> searchResult = new ArrayList<>();
 
         for (Product product : mainTableData) {
@@ -105,7 +103,8 @@ public class Controller {
 
     public int deleteManufacturerNameAndUnpManufacturer(String manufacturerName, String unp_manufacturer){
         int deleteNumber = 0;
-        for (Iterator<Product> iterator = mainTableData.iterator(); iterator.hasNext();) {
+        Iterator<Product> iterator = mainTableData.iterator();
+        while (iterator.hasNext()) {
             Product product = iterator.next();
             if (product.getManufacturerName().contains(manufacturerName) && product.getUnp_manufacturer().toString().equals(unp_manufacturer)) {
                 iterator.remove();
@@ -128,7 +127,8 @@ public class Controller {
 
     public int deleteWarehouseAddress(String warehouse_address){
         int deleteNumber = 0;
-        for (Iterator<Product> iterator = mainTableData.iterator(); iterator.hasNext();) {
+        Iterator<Product> iterator = mainTableData.iterator();
+        while (iterator.hasNext()) {
             Product product = iterator.next();
             if (product.getWarehouse_address().contains(warehouse_address)) {
                 iterator.remove();
@@ -138,12 +138,12 @@ public class Controller {
         return deleteNumber;
     }
 
-    public void insertTableData(File file, SAXParser saxParser) throws ParserConfigurationException, SAXException,
+    public void insertTableData(File file) throws ParserConfigurationException, SAXException,
                                                                                                        IOException {
         SAXparser saXparser = new SAXparser();
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
-        saxParser = factory.newSAXParser();
+        SAXParser saxParser = factory.newSAXParser();
         saxParser.parse(file, saXparser);
 
         mainTableData = saXparser.getProduct();
@@ -155,24 +155,20 @@ public class Controller {
 
 
     public void exit() {
-        try {
-             Alert alert = new Alert(Alert.AlertType.NONE);
-             alert.setTitle("Выход из программы");
-             alert.setContentText("Вы точно уверены что хотите выйти?");
-             ButtonType yes = new ButtonType("Да");
-             ButtonType no = new ButtonType("Нет");
-             alert.getButtonTypes().clear();
-             alert.getButtonTypes().addAll(no, yes);
-             Optional<ButtonType> optional = alert.showAndWait();
-             if (optional.get() == yes) {
-                 System.exit(0);
-             }
-             else if (optional.get() == no) {
-                    return;
-             }
-            } finally {
-            return;
-            }
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Выход из программы");
+        alert.setContentText("Вы точно уверены что хотите выйти?");
+        ButtonType yes = new ButtonType("Да");
+        ButtonType no = new ButtonType("Нет");
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(no, yes);
+        Optional<ButtonType> optional = alert.showAndWait();
+        if (optional.get() == yes) {
+            System.exit(0);
         }
+        else if (optional.get() == no) {
+               return;
+        }
+    }
 }
 

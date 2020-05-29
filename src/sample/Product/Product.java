@@ -9,14 +9,14 @@ public class Product {
     private StringProperty  productName;
     private StringProperty  manufacturerName;
     private SimpleIntegerProperty unp_manufacturer;
-    private SimpleIntegerProperty quantity_in_stock;
+    private StringProperty quantity_in_stock;
     private StringProperty warehouse_address;
 
-    public Product(String productName,String manufacturerName,Integer unp_manufacturer,Integer quantity_in_stock,String warehouse_address){
+    public Product(String productName,String manufacturerName,Integer unp_manufacturer,String quantity_in_stock,String warehouse_address){
         this.productName=new SimpleStringProperty(productName);
         this.manufacturerName=new SimpleStringProperty(manufacturerName);
         this.unp_manufacturer=new SimpleIntegerProperty(unp_manufacturer);
-        this.quantity_in_stock=new SimpleIntegerProperty(quantity_in_stock);
+        this.quantity_in_stock=new SimpleStringProperty(quantity_in_stock);
         this.warehouse_address=new SimpleStringProperty(warehouse_address);
     }
 
@@ -32,7 +32,7 @@ public class Product {
         return unp_manufacturer.get();
     }
 
-    public Integer getQuantity_in_stock() {
+    public String getQuantity_in_stock() {
         return quantity_in_stock.get();
     }
 

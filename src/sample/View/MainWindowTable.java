@@ -2,6 +2,7 @@ package sample.View;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
@@ -20,7 +21,7 @@ public class MainWindowTable {
     private ObservableList<Integer> kolCountValues = FXCollections.observableArrayList(5,10,15,20);
     private Controller controller;
     private Label numberOfPages;
-    private ComboBox chooseValueProductList;
+    private ComboBox<Integer> chooseValueProductList;
     private Button next,last,begin,end;;
     private Pane aligner;
     private int pageCount = 1;
@@ -46,7 +47,7 @@ public class MainWindowTable {
         TableColumn<Product, Integer> unp_manufacturerColumn = new TableColumn<>("УНП производителя");
         unp_manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("unp_manufacturer"));
 
-        TableColumn<Product, Integer> quantity_in_stockColumn = new TableColumn<>("Количество на складе");
+        TableColumn<Product, String> quantity_in_stockColumn = new TableColumn<>("Количество на складе");
         quantity_in_stockColumn.setCellValueFactory(new PropertyValueFactory<>("quantity_in_stock"));
 
         TableColumn<Product, String> warehouse_addressColumn = new TableColumn<>("Адрес склада");
@@ -61,12 +62,15 @@ public class MainWindowTable {
         table.getColumns().add(quantity_in_stockColumn);
         table.getColumns().add(warehouse_addressColumn);
 
-        chooseValueProductList = new ComboBox(kolCountValues);
+        HBox horizontalTabel = new HBox();
+        horizontalTabel.setAlignment(Pos.CENTER);
+
+        chooseValueProductList = new ComboBox<>(kolCountValues);
         chooseValueProductList.setValue(15);
         chooseValueProductList.setMinSize(150,30);
 
         chooseValueProductList.setOnAction(event -> {
-            recordsOnPageCount = (int) chooseValueProductList.getValue();
+            recordsOnPageCount = chooseValueProductList.getValue();
             pageNumber = 1;
             updateTable();
         });
@@ -75,6 +79,8 @@ public class MainWindowTable {
 
         numberOfPages = new Label("Количество страниц: " + pageCount);
         numberOfPages.autosize();
+
+
 
         next = new Button("Следующая страница");
         next.setMinSize(120,30);
@@ -85,12 +91,13 @@ public class MainWindowTable {
         last = new Button("Предыдущая страница");
         last.setMinSize(60,30);
 
-        end = new Button("Поеследняя страница");
+        end = new Button("Поcледняя страница");
         end.setMinSize(60,30);
 
-        HBox horizontal = new HBox(5);
-        horizontal.setSpacing(10);
-        horizontal.getChildren().addAll(begin,next,last,end);
+        HBox horizontalButton = new HBox(5);
+        horizontalButton.setSpacing(10);
+        horizontalButton.setAlignment(Pos.CENTER);
+        horizontalButton.getChildren().addAll(begin,last,next,end);
 
 
         totalRecordsCountLabel.setText("Всего товаров в списке: " + totalRecordsCount);
@@ -126,18 +133,12 @@ public class MainWindowTable {
                 pageNumber += 1;
                 updateTable();
             }
-            else{
-                return;
-            }
         });
 
         last.setOnAction(actionEvent -> {
             if (pageNumber != 1) {
                 pageNumber -= 1;
                 updateTable();
-            }
-            else {
-                return;
             }
         });
 
@@ -159,7 +160,7 @@ public class MainWindowTable {
                 updateTable();
             }
         });
-        aligner.getChildren().addAll(table,numberOfPages,chooseValueProductList,horizontal,totalRecordsCountLabel,pageNumberLabel);
+        aligner.getChildren().addAll(table,numberOfPages,chooseValueProductList,horizontalButton,totalRecordsCountLabel,pageNumberLabel);
     }
 
     public void updateTable() {

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DOMparser {
 
-    public void parse(List<Product> tableData, File file) throws ParserConfigurationException, TransformerException {
+    public void parse(List<Product> tableData, File file) {
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder;
@@ -42,7 +42,7 @@ public class DOMparser {
 
         Element productItem = document.createElement("product");
         productItem.setAttribute("id", Integer.toString(index));
-        document.appendChild(productItem);
+
 
         Element productName = document.createElement("productName");
         productName.appendChild(document.createTextNode(product.getProductName()));

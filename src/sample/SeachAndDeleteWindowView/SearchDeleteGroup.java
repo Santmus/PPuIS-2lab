@@ -183,9 +183,6 @@ public class SearchDeleteGroup {
             error.setContentText("Не введены все данные");
             error.show();
         }
-        else {
-            return;
-        }
     }
 
     public VBox getAdding(){
@@ -198,9 +195,6 @@ public class SearchDeleteGroup {
             error.setTitle("Ошибка");
             error.setContentText("Не введены все данные");
             error.show();
-        }
-        else {
-            return;
         }
     }
 
@@ -216,7 +210,7 @@ public class SearchDeleteGroup {
         alert.setTitle("Информация об удалении");
 
         if (numOfDeleted != 0) {
-            alert.setContentText(Integer.toString(numOfDeleted) + " записей было удалено");
+            alert.setContentText(numOfDeleted + " записей было удалено");
         }
         else {
             alert.setContentText("Ничего не удалено!");

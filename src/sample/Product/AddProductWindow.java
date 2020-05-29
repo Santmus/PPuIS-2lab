@@ -40,19 +40,19 @@ public class AddProductWindow {
         VBox addingStage = new VBox(5);
         addingStage.setPadding(new Insets(10, 20, 20, 20));
 
-        nameProduct = new Label("Название товара");
+        nameProduct = new Label("Название товара:");
         nameProductText = new TextField();
 
-        manufacturerName = new Label ("Название производителя");
+        manufacturerName = new Label ("Название производителя:");
         manufacturerNameText = new TextField();
 
-        unp_manufacturer = new Label ("УНП производителя");
+        unp_manufacturer = new Label ("УНП производителя:");
         unp_manufacturerText = new TextField();
 
-        quantity_in_stock = new Label ("Количество на складе");
+        quantity_in_stock = new Label ("Количество на складе:");
         quantity_in_stockText = new TextField();
 
-        warehouse_address = new Label("Адрес склада");
+        warehouse_address = new Label("Адрес склада:");
         warehouse_addressText = new TextField();
         addingStage.getChildren().addAll(nameProduct,nameProductText,manufacturerName,manufacturerNameText,unp_manufacturer,unp_manufacturerText,quantity_in_stock,quantity_in_stockText,warehouse_address,warehouse_addressText);
 
@@ -69,7 +69,7 @@ public class AddProductWindow {
                 warning.showAndWait();
             }
             else {
-                controller.addProductToList(nameProductText.getText(), manufacturerNameText.getText(), Integer.parseInt(unp_manufacturerText.getText()), Integer.parseInt(quantity_in_stockText.getText()), warehouse_addressText.getText());
+                controller.addProductToList(nameProductText.getText(), manufacturerNameText.getText(), Integer.parseInt(unp_manufacturerText.getText()),quantity_in_stockText.getText(), warehouse_addressText.getText());
                 mainWindowTable.updateTable();
                 Stage stage = (Stage) add.getScene().getWindow();
                 stage.close();

@@ -12,20 +12,20 @@ public class SAXparser extends DefaultHandler {
 
     private List<Product> product = new ArrayList<>();
     private String thisElement;
-    private String productName,manufacturerName,warehouse_address;
-    private Integer unp_manufacturer,quantity_in_stock;
-    private int read = 0;
+    private String productName,manufacturerName,warehouse_address,quantity_in_stock;
+    private Integer unp_manufacturer;
+    private int readCounter;
 
     @Override
-    public void startDocument() throws SAXException { System.out.println("Start parse XML..."); }
+    public void startDocument() { System.out.println("Start parse XML..."); }
 
     @Override
-    public void startElement(String namespaceURI, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String namespaceURI, String localName, String qName, Attributes attributes) {
         thisElement = qName;
     }
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {
+    public void characters(char[] ch, int start, int length){
 
         if (thisElement.equals("productName")) {
             productName = new String(ch, start, length);
@@ -41,29 +41,29 @@ public class SAXparser extends DefaultHandler {
             System.out.print(unp_manufacturer + " ");
         }
         else if (thisElement.equals("quantity_in_stock")) {
-            String quantity_in_stockText = new String(ch, start, length);
-            quantity_in_stock = Integer.parseInt(quantity_in_stockText);
+            quantity_in_stock = new String(ch, start, length);
             System.out.print(quantity_in_stock + " ");
         }
         else if (thisElement.equals("warehouse_address")) {
             warehouse_address = new String(ch, start, length);
             System.out.print(warehouse_address + "\n\n");
-
         }
-
     }
 
     @Override
-    public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
-        if (!thisElement.equals("tableDate")) {
-            read++;
-        }
-        if (read == 6) {
-            product.add(new Product(productName,manufacturerName,unp_manufacturer,quantity_in_stock,warehouse_address));
-            read = 0;
+    public void endElement(String namespaceURI, String localName, String qName) {
+      /*
+       if (!thisElement.equals("tableDate")) { readCounter++;}
+      */
+        if (readCounter != 5) {
+            readCounter++;
+        } else {
+            product.add(new Product(productName, manufacturerName, unp_manufacturer, quantity_in_stock, warehouse_address));
+            readCounter = 0;
         }
         thisElement = " ";
     }
+
     @Override
     public void endDocument() { System.out.println("Stop parse XML..."); }
 

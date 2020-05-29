@@ -26,8 +26,6 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private FlowPane root;
-
     private Controller controller = new Controller();
     private MainWindowTable insertTableElements= new MainWindowTable(controller);
     private Stage stage;
@@ -39,9 +37,9 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
-        root = new FlowPane(15,0);
+        FlowPane root = new FlowPane(15, 0);
         root.getChildren().addAll(createMenu(),insertTableElements.getAligner());
 
         Scene scene = new Scene(root,960,735);
@@ -82,7 +80,7 @@ public class Main extends Application {
         saveFile.setOnAction(actionEvent ->{
             try {
             saveTableData();
-        } catch (TransformerException | ParserConfigurationException e) {
+        } catch (TransformerException e) {
             e.printStackTrace();
         }
         });
@@ -91,9 +89,7 @@ public class Main extends Application {
         exitProgram.setOnAction(event -> controller.exit());
 
         getLine.setAccelerator(KeyCombination.keyCombination("CTRL+W"));
-        getLine.setOnAction(event -> {
-            new AddProductWindow(insertTableElements,stage, controller);
-        });
+        getLine.setOnAction(event -> new AddProductWindow(insertTableElements,stage, controller));
 
         searchLine.setAccelerator(KeyCombination.keyCombination("CTRL+F4"));
         searchLine.setOnAction(event -> new SearchWindow(stage,controller));
@@ -113,14 +109,13 @@ public class Main extends Application {
         openFileChooser.getExtensionFilters().add(extensionFilter);
         File file = openFileChooser.showOpenDialog(stage);
         if (file != null) {
-            controller.insertTableData(file, saxParser);
+            controller.insertTableData(file);
             insertTableElements.updateTable();
             insertTableElements.setPageNumber(1);
         }
     }
 
-    public void saveTableData() throws TransformerException, ParserConfigurationException
-    {
+    public void saveTableData() throws TransformerException {
         FileChooser saveFileChooser = new FileChooser();
         saveFileChooser.setTitle("Cохранение файла");
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("XML files (*.xml)","*.xml");

@@ -16,7 +16,7 @@ public class SearchWindow {
         SearchDeleteGroup searchGroup = new SearchDeleteGroup(controller, secondGroup, "Поиск");
 
         VBox layout = new VBox(5);
-        layout.getChildren().addAll(secondGroup.getAligner(),searchGroup.getAdding());
+        layout.getChildren().addAll(searchGroup.getAdding(),secondGroup.getAligner());
 
         Scene scene = new Scene(layout, 1600, 900);
 
