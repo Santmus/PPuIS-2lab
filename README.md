@@ -33,7 +33,7 @@ CTRL+F4 --- окно поиска
 
 CTRL+F6 --- окно удаления
 
-<img src = "https://github.com/Santmus/PPuIS-2lab/blob/chengeLAb/demonstation.gif"></img>
+<img src = "https://github.com/Santmus/PPuIS-2lab/blob/chengeLAb/demonstration.gif"></img>
 
 
 
