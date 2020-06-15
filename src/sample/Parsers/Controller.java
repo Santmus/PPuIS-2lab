@@ -31,9 +31,9 @@ public class Controller {
     private DOMparser parser;
     private Product product;
 
-    public void addProductToList(String productName,String manufacturerName,Integer unp_manufacturer,String quantity_in_stock,String warehouse_address) {
+    public void addProductToList(String productName,String manufacturerName,Integer unpManufacturer,String quantityInStock,String warehouseAddress) {
 
-        mainTableData.add(new Product(productName,manufacturerName,unp_manufacturer,quantity_in_stock,warehouse_address));
+        mainTableData.add(new Product(productName,manufacturerName,unpManufacturer,quantityInStock,warehouseAddress));
     }
 
     public Page<Product> updateMainWindowTableView(int pageNumber, int recordsOnPageCount) {
@@ -66,23 +66,23 @@ public class Controller {
         parser.parse(mainTableData, file);
     }
 
-    public void searchProductNameAndQuantityInStock(String productName, String quantity_in_stock) {
+    public void searchProductNameAndQuantityInStock(String productName, String quantityInStock) {
         List<Product> searchResult = new ArrayList<>();
 
         for (Product product : mainTableData) {
-            if (product.getProductName().contains(productName) && product.getQuantity_in_stock().contains(quantity_in_stock)) {
+            if (product.getProductName().contains(productName) && product.getQuantityInStock().contains(quantityInStock)) {
                 searchResult.add(product);
             }
         }
         searchTableData = searchResult;
     }
 
-    public int deleteProductNameAndQuantityInStock(String productName, String quantity_in_stock){
+    public int deleteProductNameAndQuantityInStock(String productName, String quantityInStock){
         int deleteNumber = 0;
         Iterator<Product> iterator = mainTableData.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
-            if (product.getProductName().contains(productName) && product.getQuantity_in_stock().contains(quantity_in_stock)) {
+            if (product.getProductName().contains(productName) && product.getQuantityInStock().contains(quantityInStock)) {
                 iterator.remove();
                 deleteNumber++;
             }
@@ -90,23 +90,23 @@ public class Controller {
         return deleteNumber;
     }
 
-    public void searchManufacturerNameAndUnpManufacturer(String manufacturerName, String unp_manufacturer){
+    public void searchManufacturerNameAndUnpManufacturer(String manufacturerName, String unpManufacturer){
         List<Product> searchResult = new ArrayList<>();
 
         for (Product product : mainTableData) {
-            if (product.getManufacturerName().contains(manufacturerName) && product.getUnp_manufacturer().toString().equals(unp_manufacturer)) {
+            if (product.getManufacturerName().contains(manufacturerName) && product.getUnpManufacturer().toString().equals(unpManufacturer)) {
                 searchResult.add(product);
             }
         }
         searchTableData = searchResult;
     }
 
-    public int deleteManufacturerNameAndUnpManufacturer(String manufacturerName, String unp_manufacturer){
+    public int deleteManufacturerNameAndUnpManufacturer(String manufacturerName, String unpManufacturer){
         int deleteNumber = 0;
         Iterator<Product> iterator = mainTableData.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
-            if (product.getManufacturerName().contains(manufacturerName) && product.getUnp_manufacturer().toString().equals(unp_manufacturer)) {
+            if (product.getManufacturerName().contains(manufacturerName) && product.getUnpManufacturer().toString().equals(unpManufacturer)) {
                 iterator.remove();
                 deleteNumber++;
             }
@@ -114,23 +114,23 @@ public class Controller {
         return deleteNumber;
     }
 
-    public void searchWarehouseAddress(String warehouse_address){
+    public void searchWarehouseAddress(String warehouseAddress){
         List<Product> searchResult = new ArrayList<>();
 
         for (Product product : mainTableData) {
-            if (product.getWarehouse_address().contains(warehouse_address)) {
+            if (product.getWarehouseAddress().contains(warehouseAddress)) {
                 searchResult.add(product);
             }
         }
         searchTableData = searchResult;
     }
 
-    public int deleteWarehouseAddress(String warehouse_address){
+    public int deleteWarehouseAddress(String warehouseAddress){
         int deleteNumber = 0;
         Iterator<Product> iterator = mainTableData.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
-            if (product.getWarehouse_address().contains(warehouse_address)) {
+            if (product.getWarehouseAddress().contains(warehouseAddress)) {
                 iterator.remove();
                 deleteNumber++;
             }

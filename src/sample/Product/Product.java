@@ -8,16 +8,16 @@ public class Product {
 
     private StringProperty  productName;
     private StringProperty  manufacturerName;
-    private SimpleIntegerProperty unp_manufacturer;
-    private StringProperty quantity_in_stock;
-    private StringProperty warehouse_address;
+    private SimpleIntegerProperty unpManufacturer;
+    private StringProperty quantityInStock;
+    private StringProperty warehouseAddress;
 
-    public Product(String productName,String manufacturerName,Integer unp_manufacturer,String quantity_in_stock,String warehouse_address){
+    public Product(String productName,String manufacturerName,Integer unpManufacturer,String quantityInStock,String warehouseAddress){
         this.productName=new SimpleStringProperty(productName);
         this.manufacturerName=new SimpleStringProperty(manufacturerName);
-        this.unp_manufacturer=new SimpleIntegerProperty(unp_manufacturer);
-        this.quantity_in_stock=new SimpleStringProperty(quantity_in_stock);
-        this.warehouse_address=new SimpleStringProperty(warehouse_address);
+        this.unpManufacturer=new SimpleIntegerProperty(unpManufacturer);
+        this.quantityInStock=new SimpleStringProperty(quantityInStock);
+        this.warehouseAddress=new SimpleStringProperty(warehouseAddress);
     }
 
     public String getProductName() {
@@ -28,16 +28,16 @@ public class Product {
         return manufacturerName.get();
     }
 
-    public Integer getUnp_manufacturer() {
-        return unp_manufacturer.get();
+    public Integer getUnpManufacturer() {
+        return unpManufacturer.get();
     }
 
-    public String getQuantity_in_stock() {
-        return quantity_in_stock.get();
+    public String getQuantityInStock() {
+        return quantityInStock.get();
     }
 
-    public String getWarehouse_address() {
-        return warehouse_address.get();
+    public String getWarehouseAddress() {
+        return warehouseAddress.get();
     }
 
 }

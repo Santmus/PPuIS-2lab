@@ -52,17 +52,17 @@ public class DOMparser {
         manufacturerName.appendChild(document.createTextNode(product.getManufacturerName()));
         productItem.appendChild(manufacturerName);
 
-        Element unp_manufacturer = document.createElement("unp_manufacturer");
-        unp_manufacturer.appendChild(document.createTextNode(product.getUnp_manufacturer().toString()));
-        productItem.appendChild(unp_manufacturer);
+        Element unpManufacturer = document.createElement("unp_manufacturer");
+        unpManufacturer.appendChild(document.createTextNode(product.getUnpManufacturer().toString()));
+        productItem.appendChild(unpManufacturer);
 
-        Element quantity_in_stock = document.createElement("quantity_in_stock");
-        quantity_in_stock.appendChild(document.createTextNode(product.getQuantity_in_stock().toString()));
-        productItem.appendChild(quantity_in_stock);
+        Element quantityInStock = document.createElement("quantity_in_stock");
+        quantityInStock.appendChild(document.createTextNode(product.getQuantityInStock().toString()));
+        productItem.appendChild(quantityInStock);
 
-        Element warehouse_address = document.createElement("warehouse_address");
-        warehouse_address.appendChild(document.createTextNode(product.getWarehouse_address()));
-        productItem.appendChild(warehouse_address);
+        Element warehouseAddress = document.createElement("warehouse_address");
+        warehouseAddress.appendChild(document.createTextNode(product.getWarehouseAddress()));
+        productItem.appendChild(warehouseAddress);
 
         return productItem;
     }

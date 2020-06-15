@@ -44,23 +44,23 @@ public class MainWindowTable {
         TableColumn<Product, String> manufacturerNameColumn = new TableColumn<>("Название производителя");
         manufacturerNameColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturerName"));
 
-        TableColumn<Product, Integer> unp_manufacturerColumn = new TableColumn<>("УНП производителя");
-        unp_manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("unp_manufacturer"));
+        TableColumn<Product, Integer> unpManufacturerColumn = new TableColumn<>("УНП производителя");
+        unpManufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("unpManufacturer"));
 
-        TableColumn<Product, String> quantity_in_stockColumn = new TableColumn<>("Количество на складе");
-        quantity_in_stockColumn.setCellValueFactory(new PropertyValueFactory<>("quantity_in_stock"));
+        TableColumn<Product, String> quantityInStockColumn = new TableColumn<>("Количество на складе");
+        quantityInStockColumn.setCellValueFactory(new PropertyValueFactory<>("quantityInStock"));
 
-        TableColumn<Product, String> warehouse_addressColumn = new TableColumn<>("Адрес склада");
-        warehouse_addressColumn.setCellValueFactory(new PropertyValueFactory<>("warehouse_address"));
+        TableColumn<Product, String> warehouseAddressColumn = new TableColumn<>("Адрес склада");
+        warehouseAddressColumn.setCellValueFactory(new PropertyValueFactory<>("warehouseAddress"));
 
         table.setPrefSize(960,520);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         table.getColumns().add(productNameColumn);
         table.getColumns().add(manufacturerNameColumn);
-        table.getColumns().add(unp_manufacturerColumn);
-        table.getColumns().add(quantity_in_stockColumn);
-        table.getColumns().add(warehouse_addressColumn);
+        table.getColumns().add(unpManufacturerColumn);
+        table.getColumns().add(quantityInStockColumn);
+        table.getColumns().add(warehouseAddressColumn);
 
         HBox horizontalTabel = new HBox();
         horizontalTabel.setAlignment(Pos.CENTER);

@@ -12,8 +12,8 @@ public class SAXparser extends DefaultHandler {
 
     private List<Product> product = new ArrayList<>();
     private String thisElement;
-    private String productName,manufacturerName,warehouse_address,quantity_in_stock;
-    private Integer unp_manufacturer;
+    private String productName,manufacturerName,warehouseAddress,quantityInStock;
+    private Integer unpManufacturer;
     private int readCounter;
 
     @Override
@@ -37,16 +37,16 @@ public class SAXparser extends DefaultHandler {
         }
         else if (thisElement.equals("unp_manufacturer")) {
             String unp_manufacturerText = new String(ch, start, length);
-            unp_manufacturer = Integer.parseInt(unp_manufacturerText);
-            System.out.print(unp_manufacturer + " ");
+            unpManufacturer = Integer.parseInt(unp_manufacturerText);
+            System.out.print(unpManufacturer + " ");
         }
         else if (thisElement.equals("quantity_in_stock")) {
-            quantity_in_stock = new String(ch, start, length);
-            System.out.print(quantity_in_stock + " ");
+            quantityInStock = new String(ch, start, length);
+            System.out.print(quantityInStock + " ");
         }
         else if (thisElement.equals("warehouse_address")) {
-            warehouse_address = new String(ch, start, length);
-            System.out.print(warehouse_address + "\n\n");
+            warehouseAddress = new String(ch, start, length);
+            System.out.print(warehouseAddress + "\n\n");
         }
     }
 
@@ -58,7 +58,7 @@ public class SAXparser extends DefaultHandler {
         if (readCounter != 5) {
             readCounter++;
         } else {
-            product.add(new Product(productName, manufacturerName, unp_manufacturer, quantity_in_stock, warehouse_address));
+            product.add(new Product(productName, manufacturerName, unpManufacturer, quantityInStock, warehouseAddress));
             readCounter = 0;
         }
         thisElement = " ";
