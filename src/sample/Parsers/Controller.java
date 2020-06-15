@@ -1,5 +1,7 @@
 package sample.Parsers;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import org.xml.sax.SAXException;
 import sample.Product.Product;
 import sample.View.Page;
@@ -7,12 +9,20 @@ import sample.View.Page;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
+
+/*
+  Условия поиска и удаления:
+-по названию товара или количеству на складе; +
+-названию производителя или УНП производителя
+-по адресу склада;
+*/
 
 public class Controller {
 
@@ -21,9 +31,9 @@ public class Controller {
     private DOMparser parser;
     private Product product;
 
-    public void addPatientToArray(String productName,String manufacturerName,Integer unp_manufacturer,Integer quantity_in_stock,String warehouse_address) {
+    public void addProductToList(String productName,String manufacturerName,Integer unpManufacturer,String quantityInStock,String warehouseAddress) {
 
-        mainTableData.add(new Product(productName,manufacturerName,unp_manufacturer,quantity_in_stock,warehouse_address));
+        mainTableData.add(new Product(productName,manufacturerName,unpManufacturer,quantityInStock,warehouseAddress));
     }
 
     public Page<Product> updateMainWindowTableView(int pageNumber, int recordsOnPageCount) {
@@ -49,25 +59,94 @@ public class Controller {
         else pageData = tableData.subList((pageNumber - 1) * recordsOnPageCount,
                 tableData.size());
 
-        Page<Product> page = new Page<>(pageNumber, pageData, pageCount, tableData.size());
-        pageNumber = page.getPageNumber();
-        return page;
+        return new Page<>(pageNumber, pageData, pageCount, tableData.size());
     }
 
-    public void saveTableData(File file, DOMparser parser) throws TransformerException, ParserConfigurationException {
+    public void saveTableData(File file, DOMparser parser) {
         parser.parse(mainTableData, file);
     }
 
-    public void insertTableData(File file, SAXParser parser) throws ParserConfigurationException, SAXException,
+    public void searchProductNameAndQuantityInStock(String productName, String quantityInStock) {
+        List<Product> searchResult = new ArrayList<>();
+
+        for (Product product : mainTableData) {
+            if (product.getProductName().contains(productName) && product.getQuantityInStock().contains(quantityInStock)) {
+                searchResult.add(product);
+            }
+        }
+        searchTableData = searchResult;
+    }
+
+    public int deleteProductNameAndQuantityInStock(String productName, String quantityInStock){
+        int deleteNumber = 0;
+        Iterator<Product> iterator = mainTableData.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getProductName().contains(productName) && product.getQuantityInStock().contains(quantityInStock)) {
+                iterator.remove();
+                deleteNumber++;
+            }
+        }
+        return deleteNumber;
+    }
+
+    public void searchManufacturerNameAndUnpManufacturer(String manufacturerName, String unpManufacturer){
+        List<Product> searchResult = new ArrayList<>();
+
+        for (Product product : mainTableData) {
+            if (product.getManufacturerName().contains(manufacturerName) && product.getUnpManufacturer().toString().equals(unpManufacturer)) {
+                searchResult.add(product);
+            }
+        }
+        searchTableData = searchResult;
+    }
+
+    public int deleteManufacturerNameAndUnpManufacturer(String manufacturerName, String unpManufacturer){
+        int deleteNumber = 0;
+        Iterator<Product> iterator = mainTableData.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getManufacturerName().contains(manufacturerName) && product.getUnpManufacturer().toString().equals(unpManufacturer)) {
+                iterator.remove();
+                deleteNumber++;
+            }
+        }
+        return deleteNumber;
+    }
+
+    public void searchWarehouseAddress(String warehouseAddress){
+        List<Product> searchResult = new ArrayList<>();
+
+        for (Product product : mainTableData) {
+            if (product.getWarehouseAddress().contains(warehouseAddress)) {
+                searchResult.add(product);
+            }
+        }
+        searchTableData = searchResult;
+    }
+
+    public int deleteWarehouseAddress(String warehouseAddress){
+        int deleteNumber = 0;
+        Iterator<Product> iterator = mainTableData.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getWarehouseAddress().contains(warehouseAddress)) {
+                iterator.remove();
+                deleteNumber++;
+            }
+        }
+        return deleteNumber;
+    }
+
+    public void insertTableData(File file) throws ParserConfigurationException, SAXException,
                                                                                                        IOException {
-        SAXparser saxParser = new SAXparser();
+        SAXparser saXparser = new SAXparser();
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser saxParser = factory.newSAXParser();
+        saxParser.parse(file, saXparser);
 
-        parser = factory.newSAXParser();
-        parser.parse(file, saxParser);
-
-        mainTableData = saxParser.getPatients();
+        mainTableData = saXparser.getProduct();
     }
 
     public Page<Product> updateSearchWindowTable(int pageNumber, int recordsOnPageCount) {
@@ -76,6 +155,20 @@ public class Controller {
 
 
     public void exit() {
-        System.exit(0);
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Выход из программы");
+        alert.setContentText("Вы точно уверены что хотите выйти?");
+        ButtonType yes = new ButtonType("Да");
+        ButtonType no = new ButtonType("Нет");
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(no, yes);
+        Optional<ButtonType> optional = alert.showAndWait();
+        if (optional.get() == yes) {
+            System.exit(0);
+        }
+        else if (optional.get() == no) {
+               return;
+        }
     }
 }
+

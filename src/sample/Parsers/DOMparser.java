@@ -17,48 +17,53 @@ import java.util.List;
 
 public class DOMparser {
 
-    public void parse(List<Product> tableData, File file) throws ParserConfigurationException, TransformerException {
+    public void parse(List<Product> tableData, File file) {
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-        Document document = docBuilder.newDocument();
-        Element docRootElement = document.createElement("tableData");
-
-        for (int index = 0; index < tableData.size(); index++) {
-            docRootElement.appendChild(addPlayerToDocument(index, tableData.get(index), document));
+        DocumentBuilder docBuilder;
+        try {
+            docBuilder = docFactory.newDocumentBuilder();
+            Document document = docBuilder.newDocument();
+            Element docRootElement = document.createElement("tableData");
+            for (int index = 0; index < tableData.size(); index++) {
+                docRootElement.appendChild(addPlayerToDocument(index, tableData.get(index), document));
+            }
+            document.appendChild(docRootElement);
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(file);
+            saveDataInFile(source, result);
         }
-
-        document.appendChild(docRootElement);
-        DOMSource source = new DOMSource(document);
-        StreamResult result = new StreamResult(file);
-        saveDataInFile(source, result);
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private Element addPlayerToDocument(int index, Product product, Document document) {
 
         Element productItem = document.createElement("product");
         productItem.setAttribute("id", Integer.toString(index));
-        document.appendChild(productItem);
+
 
         Element productName = document.createElement("productName");
         productName.appendChild(document.createTextNode(product.getProductName()));
-        document.appendChild(productItem);
+        productItem.appendChild(productName);
 
         Element manufacturerName = document.createElement("manufacturerName");
         manufacturerName.appendChild(document.createTextNode(product.getManufacturerName()));
-        document.appendChild(productItem);
+        productItem.appendChild(manufacturerName);
 
-        Element unp_manufacturer = document.createElement("unp_manufacturer");
-        unp_manufacturer.appendChild(document.createTextNode(product.getUnp_manufacturer().toString()));
-        document.appendChild(productItem);
+        Element unpManufacturer = document.createElement("unp_manufacturer");
+        unpManufacturer.appendChild(document.createTextNode(product.getUnpManufacturer().toString()));
+        productItem.appendChild(unpManufacturer);
 
-        Element quantity_in_stock = document.createElement("quantity_in_stock");
-        quantity_in_stock.appendChild(document.createTextNode(product.getQuantity_in_stock().toString()));
-        document.appendChild(productItem);
+        Element quantityInStock = document.createElement("quantity_in_stock");
+        quantityInStock.appendChild(document.createTextNode(product.getQuantityInStock().toString()));
+        productItem.appendChild(quantityInStock);
 
-        Element warehouse_address = document.createElement("warehouse_address");
-        warehouse_address.appendChild(document.createTextNode(product.getWarehouse_address()));
-        document.appendChild(productItem);
+        Element warehouseAddress = document.createElement("warehouse_address");
+        warehouseAddress.appendChild(document.createTextNode(product.getWarehouseAddress()));
+        productItem.appendChild(warehouseAddress);
+
         return productItem;
     }
 

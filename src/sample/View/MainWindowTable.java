@@ -2,26 +2,29 @@ package sample.View;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import sample.Parsers.Controller;
 import sample.Product.Product;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public class MainWindowTable {
 
     private ObservableList<Product> productData = FXCollections.observableArrayList();
     private ObservableList<Integer> kolCountValues = FXCollections.observableArrayList(5,10,15,20);
     private Controller controller;
-    private Label howMuchProduct;
-    private ComboBox chooseValueProductList;
+    private Label numberOfPages;
+    private ComboBox<Integer> chooseValueProductList;
     private Button next,last,begin,end;;
     private Pane aligner;
-    private int pageCount;
+    private int pageCount = 1;
     private int pageNumber = 1;
     private Page<Product> currentPage;
 
@@ -34,7 +37,6 @@ public class MainWindowTable {
 
         this.controller = controller;
 
-
         TableView table = new TableView<>(productData);
         TableColumn<Product, String> productNameColumn = new TableColumn<>("Название товара");
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
@@ -42,61 +44,87 @@ public class MainWindowTable {
         TableColumn<Product, String> manufacturerNameColumn = new TableColumn<>("Название производителя");
         manufacturerNameColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturerName"));
 
-        TableColumn<Product, Integer> unp_manufacturerColumn = new TableColumn<>("УНП производителя");
-        unp_manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("unp_manufacturer"));
+        TableColumn<Product, Integer> unpManufacturerColumn = new TableColumn<>("УНП производителя");
+        unpManufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("unpManufacturer"));
 
-        TableColumn<Product, Integer> quantity_in_stockColumn = new TableColumn<>("Количество на складе");
-        quantity_in_stockColumn.setCellValueFactory(new PropertyValueFactory<>("quantity_in_stock"));
+        TableColumn<Product, String> quantityInStockColumn = new TableColumn<>("Количество на складе");
+        quantityInStockColumn.setCellValueFactory(new PropertyValueFactory<>("quantityInStock"));
 
-        TableColumn<Product, String> warehouse_addressColumn = new TableColumn<>("Адрес склада");
-        warehouse_addressColumn.setCellValueFactory(new PropertyValueFactory<>("warehouse_address"));
+        TableColumn<Product, String> warehouseAddressColumn = new TableColumn<>("Адрес склада");
+        warehouseAddressColumn.setCellValueFactory(new PropertyValueFactory<>("warehouseAddress"));
 
-        table.setPrefSize(968,520);
+        table.setPrefSize(960,520);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         table.getColumns().add(productNameColumn);
         table.getColumns().add(manufacturerNameColumn);
-        table.getColumns().add(unp_manufacturerColumn);
-        table.getColumns().add(quantity_in_stockColumn);
-        table.getColumns().add(warehouse_addressColumn);
+        table.getColumns().add(unpManufacturerColumn);
+        table.getColumns().add(quantityInStockColumn);
+        table.getColumns().add(warehouseAddressColumn);
 
-        chooseValueProductList = new ComboBox(kolCountValues);
+        HBox horizontalTabel = new HBox();
+        horizontalTabel.setAlignment(Pos.CENTER);
+
+        chooseValueProductList = new ComboBox<>(kolCountValues);
         chooseValueProductList.setValue(15);
         chooseValueProductList.setMinSize(150,30);
 
+        chooseValueProductList.setOnAction(event -> {
+            recordsOnPageCount = chooseValueProductList.getValue();
+            pageNumber = 1;
+            updateTable();
+        });
+
         aligner = new VBox(10);
 
-        howMuchProduct = new Label("Количество товаров в списке:" + pageCount);
-        howMuchProduct.autosize();
+        numberOfPages = new Label("Количество страниц: " + pageCount);
+        numberOfPages.autosize();
+
+
 
         next = new Button("Следующая страница");
         next.setMinSize(120,30);
 
-        begin = new Button("Начало");
+        begin = new Button("Начальная страница");
         begin.setMinSize(60,30);
 
         last = new Button("Предыдущая страница");
         last.setMinSize(60,30);
 
-        end = new Button("Конец");
+        end = new Button("Поcледняя страница");
         end.setMinSize(60,30);
 
-        HBox horizontal = new HBox(5);
-        horizontal.setSpacing(10);
-        horizontal.getChildren().addAll(begin,next,last,end);
+        HBox horizontalButton = new HBox(5);
+        horizontalButton.setSpacing(10);
+        horizontalButton.setAlignment(Pos.CENTER);
+        horizontalButton.getChildren().addAll(begin,last,next,end);
 
 
-        totalRecordsCountLabel.setText("Total records count:" + totalRecordsCount);
+        totalRecordsCountLabel.setText("Всего товаров в списке: " + totalRecordsCount);
         totalRecordsCountLabel.setLayoutY(450);
 
-        pageNumberLabel.setText("Page number:" + pageNumber);
+        pageNumberLabel.setText("Cтраница: " + pageNumber);
         pageNumberLabel.setLayoutY(460);
         pageNumberLabel.setLayoutX(295);
 
 
         begin.setOnAction(actionEvent -> {
-            pageNumber = 1;
-            updateTable();
+            if(pageNumber == 1){
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.initModality(Modality.WINDOW_MODAL);
+                alert.setTitle("Ошибка");
+                alert.setContentText("Вы на первой странице");
+                ButtonType buttonType = new ButtonType("OK");
+                alert.getButtonTypes().add(buttonType);
+                Optional<ButtonType> optional = alert.showAndWait();
+                if (optional.get() == buttonType){
+                    return;
+                }
+            }
+            else {
+                pageNumber = 1;
+                updateTable();
+            }
         });
 
 
@@ -107,8 +135,6 @@ public class MainWindowTable {
             }
         });
 
-
-
         last.setOnAction(actionEvent -> {
             if (pageNumber != 1) {
                 pageNumber -= 1;
@@ -117,20 +143,34 @@ public class MainWindowTable {
         });
 
         end.setOnAction(actionEvent -> {
-            pageNumber = pageCount;
-            updateTable();
+            if(pageNumber == pageCount){
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.initModality(Modality.WINDOW_MODAL);
+                alert.setTitle("Ошибка");
+                alert.setContentText("Вы на последней странице");
+                ButtonType buttonType = new ButtonType("OK");
+                alert.getButtonTypes().add(buttonType);
+                Optional<ButtonType> optional = alert.showAndWait();
+                if (optional.get() == buttonType){
+                    return;
+                }
+            }
+            else {
+                pageNumber = pageCount;
+                updateTable();
+            }
         });
-        aligner.getChildren().addAll(table,howMuchProduct,chooseValueProductList,horizontal,pageNumberLabel);
+        aligner.getChildren().addAll(table,numberOfPages,chooseValueProductList,horizontalButton,totalRecordsCountLabel,pageNumberLabel);
     }
 
     public void updateTable() {
         updateCurrentPage();
-        productData.setAll((Collection<? extends Product>) currentPage.getPatients());
+        productData.setAll((Collection<? extends Product>) currentPage.getProduct());
         pageCount = currentPage.getPageCount();
-        howMuchProduct.setText("Page count:" + getPageCount());
+        numberOfPages.setText("Количество страниц:" + getPageCount());
         totalRecordsCount = currentPage.getTotalRecordsCount();
-        totalRecordsCountLabel.setText("Total records count:" + getTotalRecordsCount());
-        pageNumberLabel.setText("Page number:" + currentPage.getPageNumber());
+        totalRecordsCountLabel.setText("Всего товаров в списке:" + getTotalRecordsCount());
+        pageNumberLabel.setText("Cтраница:" + currentPage.getPageNumber());
     }
 
     public void updateCurrentPage() {
@@ -146,7 +186,7 @@ public class MainWindowTable {
     }
 
 
-    public ObservableList<Product> getPatients() {
+    public ObservableList<Product> getProduct() {
         return this.productData;
     }
 

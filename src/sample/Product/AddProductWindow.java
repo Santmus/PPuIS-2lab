@@ -14,8 +14,8 @@ public class AddProductWindow {
 
     private Controller controller;
     private MainWindowTable mainWindowTable;
-    private Label nameProduct,manufacturerName,unp_manufacturer,quantity_in_stock,warehouse_address;
-    private TextField nameProductText,manufacturerNameText,unp_manufacturerText,quantity_in_stockText,warehouse_addressText;
+    private Label nameProduct,manufacturerName,unpManufacturer,quantityInStock,warehouseAddress;
+    private TextField nameProductText,manufacturerNameText,unpManufacturerText,quantityInStockText,warehouseAddressText;
     private Button add;
 
     public AddProductWindow(MainWindowTable mainWindowTable, Stage primaryStage, Controller controller) {
@@ -32,8 +32,7 @@ public class AddProductWindow {
         addProductStage.setScene(secondScene);
         addProductStage.initModality(Modality.WINDOW_MODAL);
         addProductStage.initOwner(primaryStage);
-
-        addProductStage .show();
+        addProductStage.show();
     }
 
     public VBox getWindow() {
@@ -41,28 +40,28 @@ public class AddProductWindow {
         VBox addingStage = new VBox(5);
         addingStage.setPadding(new Insets(10, 20, 20, 20));
 
-        nameProduct = new Label("Название товара");
+        nameProduct = new Label("Название товара:");
         nameProductText = new TextField();
 
-        manufacturerName = new Label ("Название производителя");
+        manufacturerName = new Label ("Название производителя:");
         manufacturerNameText = new TextField();
 
-        unp_manufacturer = new Label ("УНП производителя");
-        unp_manufacturerText = new TextField();
+        unpManufacturer = new Label ("УНП производителя:");
+        unpManufacturerText = new TextField();
 
-        quantity_in_stock = new Label ("Количество на складе");
-        quantity_in_stockText = new TextField();
+        quantityInStock = new Label ("Количество на складе:");
+        quantityInStockText = new TextField();
 
-        warehouse_address = new Label("Адрес склада");
-        warehouse_addressText = new TextField();
-        addingStage.getChildren().addAll(nameProduct,nameProductText,manufacturerName,manufacturerNameText,unp_manufacturer,unp_manufacturerText,quantity_in_stock,quantity_in_stockText,warehouse_address,warehouse_addressText);
+        warehouseAddress = new Label("Адрес склада:");
+        warehouseAddressText = new TextField();
+        addingStage.getChildren().addAll(nameProduct,nameProductText,manufacturerName,manufacturerNameText,unpManufacturer,unpManufacturerText,quantityInStock,quantityInStockText,warehouseAddress,warehouseAddressText);
 
         add = new Button("Добавить информацию");
         add.autosize();
         addingStage.getChildren().add(add);
 
         add.setOnAction(event -> {
-            if (nameProductText.getText().isEmpty() || manufacturerNameText.getText().isEmpty() || unp_manufacturerText.getText().isEmpty() || warehouse_addressText.getText().isEmpty() || quantity_in_stockText.getText().isEmpty())
+            if (nameProductText.getText().isEmpty() || manufacturerNameText.getText().isEmpty() || unpManufacturerText.getText().isEmpty() || warehouseAddressText.getText().isEmpty() || quantityInStockText.getText().isEmpty())
             {
                 Alert warning = new Alert(Alert.AlertType.WARNING);
                 warning.setTitle("Ошибка");
@@ -70,7 +69,7 @@ public class AddProductWindow {
                 warning.showAndWait();
             }
             else {
-                controller.addPatientToArray(nameProductText.getText(), manufacturerNameText.getText(), Integer.parseInt(unp_manufacturerText.getText()), Integer.parseInt(quantity_in_stockText.getText()), warehouse_addressText.getText());
+                controller.addProductToList(nameProductText.getText(), manufacturerNameText.getText(), Integer.parseInt(unpManufacturerText.getText()),quantityInStockText.getText(), warehouseAddressText.getText());
                 mainWindowTable.updateTable();
                 Stage stage = (Stage) add.getScene().getWindow();
                 stage.close();
